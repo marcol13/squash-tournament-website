@@ -24,7 +24,7 @@ const SpanLogoStyle = tw.span`
 `;
 
 const SpanUserStyle = tw.span`
-    text-l
+    text-xl
     mr-4
 `;
 
@@ -50,10 +50,10 @@ export const Nav = () => {
       )}
       {!isLogged && (
         <div>
-          <Button onClick={() => setLogged((state) => !state)}>
+          <Button onClick={() => setLogged((state) => !state)} type="gradient" className="mx-2">
             Zaloguj się
           </Button>
-          <Button onClick={() => setLogged((state) => !state)}>
+          <Button onClick={() => setLogged((state) => !state)} type="gradient">
             Zarejestruj się
           </Button>
         </div>

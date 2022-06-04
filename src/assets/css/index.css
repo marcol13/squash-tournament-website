@@ -23,8 +23,9 @@
 body{
     font-family: 'Raleway', sans-serif;
     background-color: var(--black);
+    overflow-x: hidden;
 }
 
 .container{
-    margin: 20px 40px 0;
+    margin: 20px;
 }
