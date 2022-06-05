@@ -9,6 +9,7 @@
     "lint": "eslint src --ext .tsx"
   },
   "dependencies": {
+    "@g-loot/react-tournament-brackets": "^1.0.18-beta.1",
     "autoprefixer": "^10.4.5",
     "leaflet": "^1.8.0",
     "react": "^18.0.0",

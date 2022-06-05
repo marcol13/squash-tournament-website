@@ -4,7 +4,7 @@ import { Button } from "./components/Button";
 import { Nav } from "./components/Nav";
 import { Card } from "./components/Card";
 import { MainPage } from "./pages/MainPage";
-import { TournamentPage } from "./pages/TournamentPage";
+import { TournamentPage } from "./pages/Tournament/TournamentPage";
 
 function App() {
   return (
