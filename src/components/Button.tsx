@@ -1,17 +1,22 @@
 import tw from "tailwind-styled-components";
 
-const ButtomCustomStyle = tw.button`
+const ButtonCustomStyle = tw.button`
   p-2
   text-custom-white
   shadow-md
   rounded-sm
 `;
 
-const ButtonStyle = tw(ButtomCustomStyle)`
+const ButtonPrimary = tw(ButtonCustomStyle)`
     bg-blue-500
 `;
 
-const ButtonGradient = tw(ButtomCustomStyle)`
+const ButtonSecondary = tw(ButtonCustomStyle)`
+    text-slate-300
+    bg-custom-dark-gray
+`
+
+const ButtonGradient = tw(ButtonCustomStyle)`
   border-[3px]
   border-transparent
   border-solid
@@ -28,8 +33,8 @@ const ButtonGradient = tw(ButtomCustomStyle)`
 `;
 
 const variants = {
-  primary: ButtonStyle,
-  secondary: ButtonStyle,
+  primary: ButtonPrimary,
+  secondary: ButtonSecondary,
   gradient: ButtonGradient,
 };
 

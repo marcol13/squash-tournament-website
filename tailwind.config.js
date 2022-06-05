@@ -16,8 +16,12 @@ module.exports = {
         "custom-gradient-blue": "#00a5f4",
       },
       zIndex: {
-        n1: "-1",
+        "n1": "-1",
       },
+      backgroundImage: {
+        "tournament-placeholder": "url('src/assets/img/squash-background-placeholder_2.jpg')",
+        "squash-balls": "url('src/assets/img/squash-balls.jpg')"
+      }
     },
   },
   plugins: [],
