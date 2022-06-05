@@ -10,7 +10,7 @@ module.exports = {
         "custom-white": "#FEFEFE",
         "custom-black": "#333237",
         "custom-dark-gray": "#525055",
-        "custom-light-gray": "#828991",
+        "custom-light-gray": "#969ca3",
         "custom-blue": "#3DC8DC",
         "custom-gradient-green": "#00ef90",
         "custom-gradient-blue": "#00a5f4",
