@@ -12,19 +12,62 @@ const CardStyle = tw.div`
     p-2
     rounded-sm
     text-custom-dark-gray
-`
+    cursor-pointer
+`;
 
-export const Card = () => {
-    return(
-        <CardStyle>
-            <h3 className="text-lg font-semibold mb-3">Turniej osiedla</h3>
-            <img className="rounded-lg object-cover mb-3" src="src/assets/img/tournament-card-placeholder.jpg"/>
-            <div>
-                <span>✅ 5/16</span>
-                <span>📆 10.06.2022</span>
-                <span>📍 Poznań, 11 punkt</span>
-                <span>🏆 100zł</span>
-            </div>
-        </CardStyle>
-    )
+const CenterTableStyle = tw.div`
+    flex
+    items-center
+    justify-center
+    flex-col
+    h-full
+    w-full
+`;
+
+const TableInfoStyle = tw.table`
+    w-full
+    table-fixed
+    py-0
+`;
+
+const CellInfoStyle = tw.td`
+    inline-block
+    text-left
+    whitespace-nowrap
+    text-ellipsis
+    overflow-hidden
+`;
+
+type CardType = {
+    title: string,
+    image?: string,
+    date: string,
+    registered: number,
+    maxRegistered: number,
+    city: string,
+    price?: number
 }
+
+export const Card = ({title, image="src/assets/img/tournament-card-placeholder.jpg", date, registered, maxRegistered, city, price = 0}: CardType) => {
+  return (
+    <CardStyle>
+      <h3 className="text-lg font-semibold mb-3">{title}</h3>
+      <img
+        className="rounded-lg object-cover mb-3"
+        src={image}
+      />
+      <CenterTableStyle>
+        <TableInfoStyle>
+          <tr>
+            <CellInfoStyle className="w-3/5">📆 {date}</CellInfoStyle>
+            <CellInfoStyle className="w-2/5">{registered < maxRegistered ? '✅' : '❌'} {registered}/{maxRegistered}</CellInfoStyle>
+          </tr>
+          <tr>
+            <CellInfoStyle className="w-3/5">📍 {city}</CellInfoStyle>
+            <CellInfoStyle className="w-2/5">🏆 {price}zł</CellInfoStyle>
+          </tr>
+        </TableInfoStyle>
+      </CenterTableStyle>
+    </CardStyle>
+  );
+};
