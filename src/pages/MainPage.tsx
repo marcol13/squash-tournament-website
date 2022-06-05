@@ -62,7 +62,7 @@ export const MainPage = () => {
       </TournamentContainer>
       <div className="flex justify-between items-center my-5">
         <HeaderStyle>Zbliżające się turnieje</HeaderStyle>
-        <Search />
+        <Search inputPlaceholder="Nazwa turnieju"/>
       </div>
       <TournamentContainer>
         <Card

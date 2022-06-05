@@ -5,13 +5,15 @@ import { Nav } from "./components/Nav";
 import { Card } from "./components/Card";
 import { MainPage } from "./pages/MainPage";
 import { TournamentPage } from "./pages/Tournament/TournamentPage";
+import { Login } from "./pages/Login";
 
 function App() {
   return (
     <>
       <Nav />
       <div className="custom-container">
-        <TournamentPage />
+        <Login />
+        {/* <TournamentPage /> */}
         {/* <MainPage /> */}
         {/* <Button onClick={() => {}} type="gradient">
           Fajny przycisk

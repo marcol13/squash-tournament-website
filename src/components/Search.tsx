@@ -1,23 +1,10 @@
 import {Button} from "./Button"
-import tw from "tailwind-styled-components";
+import { Input } from "./Input"
 
-const InputGradientStyle = tw.input`
-    mr-5 
-    p-2 
-    rounded-sm 
-    w-[300px] 
-    focus:outline-none
-    bg-transparent
-    text-custom-white
-    border-2
-    border-solid
-    border-custom-gradient-blue
-`
-
-export const Search = () => {
+export const Search = ({inputPlaceholder} : {inputPlaceholder?: string}) => {
     return(
         <div>
-            <InputGradientStyle type="text" placeholder="Nazwa turnieju"/>
+            <Input placeholder={inputPlaceholder ?? ""}/>
             <Button onClick={() => {}}>Wyszukaj</Button>
         </div>
     )
