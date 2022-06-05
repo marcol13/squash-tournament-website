@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Button } from "../../components/Button";
 import { InfoPage } from "./InfoPage";
+import { Ladder } from "./Ladder";
 import tw from "tailwind-styled-components";
+import { Register } from "./Register";
 
 const TitleDivStyle = tw.div`
     relative
@@ -41,6 +44,8 @@ const HeaderStyle = tw.h1`
 `;
 
 export const TournamentPage = () => {
+  const [selectedOption, setSelectedOption] = useState(0)
+
   return (
     <div>
       <TitleDivStyle>
@@ -48,18 +53,18 @@ export const TournamentPage = () => {
       </TitleDivStyle>
       <div className="flex justify-between mb-5">
         <div>
-          <Button className="mr-2" onClick={() => {}} type="secondary">
+          <Button className="mr-2" onClick={() => {setSelectedOption(0)}} type="secondary">
             Informacje
           </Button>
-          <Button onClick={() => {}} type="secondary">
+          <Button onClick={() => {setSelectedOption(1)}} type="secondary">
             Drabinka
           </Button>
         </div>
-        <Button onClick={() => {}} type="secondary">
+        <Button onClick={() => {setSelectedOption(2)}} type="secondary">
           ➕ Zapisz się
         </Button>
       </div>
-      <InfoPage />
+      {selectedOption == 1 ? <Ladder /> : selectedOption == 2 ? <Register /> : <InfoPage />}
     </div>
   );
 };

@@ -30,7 +30,7 @@ export const InfoPage = () => {
               <td className="pt-6 pb-1">11 Punkt</td>
             </tr>
             <tr className="border-b-2 border-solid border-custom-dark-gray">
-              <th className="pt-6 pb-1">Ilość uczestników</th>
+              <th className="pt-6 pb-1">Ilość uczestników:</th>
               <td className="pt-6 pb-1">10/20</td>
             </tr>
             <tr className="border-b-2 border-solid border-custom-dark-gray">
