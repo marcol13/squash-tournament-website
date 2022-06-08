@@ -9,6 +9,7 @@ import { TournamentPage } from "./pages/Tournament/TournamentPage";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { OptionList } from "./components/OptionList";
+import { ProfilePage } from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -19,8 +20,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/tournament/:tournamentId" element={<TournamentPage />} />
-          <Route path="*" element={<MainPage />} />
-          {/* <Route path="*" element={<OptionList />} /> */}
+          {/* <Route path="*" element={<MainPage />} /> */}
+          <Route path="*" element={<ProfilePage />} />
         </Routes>
       </div>
     </>
