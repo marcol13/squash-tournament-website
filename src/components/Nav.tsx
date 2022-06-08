@@ -8,6 +8,7 @@ const NavStyle = tw.nav`
     px-3
     flex
     justify-between
+    cursor-pointer
 `;
 
 const ImgLogoStyle = tw.img`

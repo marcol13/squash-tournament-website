@@ -6,13 +6,15 @@ import { Card } from "./components/Card";
 import { MainPage } from "./pages/MainPage";
 import { TournamentPage } from "./pages/Tournament/TournamentPage";
 import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
 
 function App() {
   return (
     <>
       <Nav />
       <div className="custom-container">
-        <Login />
+        <Register />
+        {/* <Login /> */}
         {/* <TournamentPage /> */}
         {/* <MainPage /> */}
         {/* <Button onClick={() => {}} type="gradient">

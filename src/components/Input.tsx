@@ -17,7 +17,7 @@ type InputType = {
     placeholder?: string, 
     name?: string, 
     id?: string,
-    type?: "text" | "password"
+    type?: "text" | "password" | "search"
 }
 
 export const Input = ({placeholder, name, id, type="text"} : InputType) => {
