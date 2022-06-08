@@ -1,0 +1,41 @@
+import tw from "tailwind-styled-components";
+
+const ListContainerStyle = tw.div`
+    w-[225px]
+    border-2
+    border-slate-300
+    border-solid
+    rounded-lg
+    p-5
+    bg-custom-dark-gray
+`
+
+const UlContainerStyle = tw.ul`
+    text-center
+    font-semibold
+    text-custom-white
+    tracking-wide
+    list-none
+`
+
+const ListElementStyle = tw.li`
+    pb-2
+    mx-5
+    mb-2
+`
+
+const SpanStyle = tw.span`
+    cursor-pointer
+`
+
+export const OptionList = ({className} : {className?: string}) => {
+    return(
+        <ListContainerStyle className={className}>
+            <UlContainerStyle>
+                <ListElementStyle className="border-b-[1px] border-solid border-slate-400"><SpanStyle>Profil</SpanStyle></ListElementStyle>
+                <ListElementStyle className="border-b-[1px] border-solid border-slate-400"><SpanStyle>Historia</SpanStyle></ListElementStyle>
+                <ListElementStyle className="mb-0 pb-0"><SpanStyle>Wyloguj</SpanStyle></ListElementStyle>
+            </UlContainerStyle>
+        </ListContainerStyle>
+    )
+}

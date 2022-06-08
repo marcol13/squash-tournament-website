@@ -8,6 +8,7 @@ import { MainPage } from "./pages/MainPage";
 import { TournamentPage } from "./pages/Tournament/TournamentPage";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
+import { OptionList } from "./components/OptionList";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/tournament/:tournamentId" element={<TournamentPage />} />
           <Route path="*" element={<MainPage />} />
+          {/* <Route path="*" element={<OptionList />} /> */}
         </Routes>
       </div>
     </>

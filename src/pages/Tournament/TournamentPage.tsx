@@ -44,7 +44,7 @@ const HeaderStyle = tw.h1`
 `;
 
 export const TournamentPage = () => {
-  const [selectedOption, setSelectedOption] = useState(0)
+  const [selectedOption, setSelectedOption] = useState(0);
 
   return (
     <div>
@@ -53,18 +53,42 @@ export const TournamentPage = () => {
       </TitleDivStyle>
       <div className="flex justify-between mb-5">
         <div>
-          <Button className="mr-2" onClick={() => {setSelectedOption(0)}} type="secondary">
+          <Button
+            className="mr-2"
+            onClick={() => {
+              setSelectedOption(0);
+            }}
+            type="secondary"
+          >
             Informacje
           </Button>
-          <Button onClick={() => {setSelectedOption(1)}} type="secondary">
+          <Button
+            onClick={() => {
+              setSelectedOption(1);
+            }}
+            type="secondary"
+          >
             Drabinka
           </Button>
         </div>
-        <Button onClick={() => {setSelectedOption(2)}} type="secondary">
-          ➕ Zapisz się
-        </Button>
+        <div>
+          <Button
+            onClick={() => {
+              setSelectedOption(2);
+            }}
+            type="secondary"
+          >
+            ➕ Zapisz się
+          </Button>
+        </div>
       </div>
-      {selectedOption == 1 ? <Ladder /> : selectedOption == 2 ? <Register /> : <InfoPage />}
+      {selectedOption == 1 ? (
+        <Ladder />
+      ) : selectedOption == 2 ? (
+        <Register />
+      ) : (
+        <InfoPage />
+      )}
     </div>
   );
 };

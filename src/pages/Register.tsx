@@ -1,4 +1,10 @@
 import { Input } from "../components/Input";
+import { Button } from "../components/Button";
+import tw from "tailwind-styled-components";
+
+const InputStyle = tw(Input)`
+  mr-0
+`
 
 export const Register = () => {
   return (
@@ -8,24 +14,25 @@ export const Register = () => {
         <div>
           <div className="flex flex-col gap-1 mb-3">
             <label htmlFor="name">Imię:</label>
-            <Input name="name" id="name" />
+            <InputStyle name="name" id="name" />
           </div>
           <div className="flex flex-col gap-1 mb-3">
             <label htmlFor="surname">Nazwisko:</label>
-            <Input name="surname" id="surname" />
+            <InputStyle name="surname" id="surname" />
           </div>
           <div className="flex flex-col gap-1 mb-3">
             <label htmlFor="email">E-mail:</label>
-            <Input name="email" id="email" />
+            <InputStyle name="email" id="email" />
           </div>
           <div className="flex flex-col gap-1 mb-3">
             <label htmlFor="email2">Powtórz e-mail:</label>
-            <Input name="email2" id="email2" />
+            <InputStyle name="email2" id="email2" />
           </div>
           <div className="flex flex-col gap-1 mb-3">
             <label htmlFor="password">Hasło:</label>
-            <Input type="password" name="password" id="password" />
+            <InputStyle type="password" name="password" id="password" />
           </div>
+          <Button className="w-full mt-5" onClick={() => {}}>Zarejestruj się</Button>
         </div>
       </div>
     </div>

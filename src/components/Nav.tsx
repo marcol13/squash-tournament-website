@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "./Button";
 import { Link } from "react-router-dom";
 import tw from "tailwind-styled-components";
+import { OptionList } from "./OptionList";
 
 const NavStyle = tw.nav`
     text-custom-white
@@ -37,6 +38,7 @@ const ImgUserStyle = tw.img`
 
 export const Nav = () => {
   const [isLogged, setLogged] = useState(false);
+  const [isClickedProfile, setClickedProfile] = useState(false);
 
   return (
     <NavStyle>
@@ -47,9 +49,17 @@ export const Nav = () => {
         </div>
       </Link>
       {isLogged && (
-        <div className="flex items-center justify-end">
-          <SpanUserStyle>Cześć Marcin!</SpanUserStyle>
-          <ImgUserStyle src="src/assets/img/user.png" />
+        <div className="relative">
+          <div className="flex items-center justify-end" onClick={() => setClickedProfile((state) => !state)}>
+            <SpanUserStyle>Cześć Marcin!</SpanUserStyle>
+            <ImgUserStyle src="src/assets/img/user.png" />
+          </div>
+
+          <OptionList
+            className={`${
+              !isClickedProfile ? "hidden" : "block"
+            } absolute right-[3px] cursor-default`}
+          />
         </div>
       )}
       {!isLogged && (

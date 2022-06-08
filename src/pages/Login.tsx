@@ -1,11 +1,16 @@
 import { Input } from "../components/Input";
 import tw from "tailwind-styled-components";
+import { Button } from "../components/Button";
 
 const ActionStyle = tw.p`
     mb-1
     underline
     cursor-pointer
-`
+`;
+
+const InputStyle = tw(Input)`
+    w-full
+`;
 
 export const Login = () => {
   return (
@@ -15,14 +20,17 @@ export const Login = () => {
         <div>
           <div className="flex flex-col gap-1 mb-3">
             <label htmlFor="login">Login:</label>
-            <Input name="login" id="login"/>
+            <InputStyle name="login" id="login" />
           </div>
           <div className="flex flex-col gap-1 mb-5">
             <label htmlFor="password">Hasło:</label>
-            <Input type="password" name="password" id="password"/>
+            <InputStyle type="password" name="password" id="password" />
           </div>
           <ActionStyle>Nie pamiętasz hasła? Kliknij aby zresetować</ActionStyle>
           <ActionStyle>Nie masz jeszcze konta? Zarejestruj się</ActionStyle>
+          <Button className="mt-5 w-full" onClick={() => {}}>
+            Zaloguj się
+          </Button>
         </div>
       </div>
     </div>
