@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "./Button";
+import { Link } from "react-router-dom";
 import tw from "tailwind-styled-components";
 
 const NavStyle = tw.nav`
@@ -39,10 +40,12 @@ export const Nav = () => {
 
   return (
     <NavStyle>
-      <div className="flex items-center justify-start">
-        <ImgLogoStyle src="src/assets/img/player-logo.svg" />
-        <SpanLogoStyle>Squash tournament generator</SpanLogoStyle>
-      </div>
+      <Link to="/">
+        <div className="flex items-center justify-start">
+          <ImgLogoStyle src="src/assets/img/player-logo.svg" />
+          <SpanLogoStyle>Squash tournament generator</SpanLogoStyle>
+        </div>
+      </Link>
       {isLogged && (
         <div className="flex items-center justify-end">
           <SpanUserStyle>Cześć Marcin!</SpanUserStyle>
@@ -51,15 +54,26 @@ export const Nav = () => {
       )}
       {!isLogged && (
         <div>
-          <Button onClick={() => setLogged((state) => !state)} type="gradient" className="mx-2">
-            Zaloguj się
-          </Button>
-          <Button onClick={() => setLogged((state) => !state)} type="gradient">
-            Zarejestruj się
-          </Button>
+          <Link to="/login">
+            <Button
+              onClick={() => setLogged((state) => !state)}
+              type="gradient"
+              className="mx-2"
+            >
+              Zaloguj się
+            </Button>
+          </Link>
+
+          <Link to="/register">
+            <Button
+              onClick={() => setLogged((state) => !state)}
+              type="gradient"
+            >
+              Zarejestruj się
+            </Button>
+          </Link>
         </div>
       )}
     </NavStyle>
   );
 };
- 

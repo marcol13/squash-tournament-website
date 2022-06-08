@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./assets/css/index.css";
 import { Button } from "./components/Button";
 import { Nav } from "./components/Nav";
@@ -13,14 +14,12 @@ function App() {
     <>
       <Nav />
       <div className="custom-container">
-        <Register />
-        {/* <Login /> */}
-        {/* <TournamentPage /> */}
-        {/* <MainPage /> */}
-        {/* <Button onClick={() => {}} type="gradient">
-          Fajny przycisk
-        </Button> */}
-        {/* <Card title="Turniej Junikowa" date="20.05.2022" registered={10} maxRegistered={10} city="Poznań" price={10}/> */}
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/tournament/:tournamentId" element={<TournamentPage />} />
+          <Route path="*" element={<MainPage />} />
+        </Routes>
       </div>
     </>
   );

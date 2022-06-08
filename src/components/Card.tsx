@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import tw from "tailwind-styled-components";
 
 const CardStyle = tw.div`
@@ -39,35 +40,47 @@ const CellInfoStyle = tw.td`
 `;
 
 type CardType = {
-    title: string,
-    image?: string,
-    date: string,
-    registered: number,
-    maxRegistered: number,
-    city: string,
-    price?: number
-}
+  title: string;
+  image?: string;
+  date: string;
+  registered: number;
+  maxRegistered: number;
+  city: string;
+  price?: number;
+  link: string;
+};
 
-export const Card = ({title, image="src/assets/img/tournament-card-placeholder.jpg", date, registered, maxRegistered, city, price = 0}: CardType) => {
+export const Card = ({
+  title,
+  image = "src/assets/img/tournament-card-placeholder.jpg",
+  date,
+  registered,
+  maxRegistered,
+  city,
+  price = 0,
+  link,
+}: CardType) => {
   return (
-    <CardStyle>
-      <h3 className="text-lg font-semibold mb-3">{title}</h3>
-      <img
-        className="rounded-lg object-cover mb-3"
-        src={image}
-      />
-      <CenterTableStyle>
-        <TableInfoStyle>
-          <tr>
-            <CellInfoStyle className="w-3/5">📆 {date}</CellInfoStyle>
-            <CellInfoStyle className="w-2/5">{registered < maxRegistered ? '✅' : '❌'} {registered}/{maxRegistered}</CellInfoStyle>
-          </tr>
-          <tr>
-            <CellInfoStyle className="w-3/5">📍 {city}</CellInfoStyle>
-            <CellInfoStyle className="w-2/5">🏆 {price}zł</CellInfoStyle>
-          </tr>
-        </TableInfoStyle>
-      </CenterTableStyle>
-    </CardStyle>
+    <Link to={link}>
+      <CardStyle>
+        <h3 className="text-lg font-semibold mb-3">{title}</h3>
+        <img className="rounded-lg object-cover mb-3" src={image} />
+        <CenterTableStyle>
+          <TableInfoStyle>
+            <tr>
+              <CellInfoStyle className="w-3/5">📆 {date}</CellInfoStyle>
+              <CellInfoStyle className="w-2/5">
+                {registered < maxRegistered ? "✅" : "❌"} {registered}/
+                {maxRegistered}
+              </CellInfoStyle>
+            </tr>
+            <tr>
+              <CellInfoStyle className="w-3/5">📍 {city}</CellInfoStyle>
+              <CellInfoStyle className="w-2/5">🏆 {price}zł</CellInfoStyle>
+            </tr>
+          </TableInfoStyle>
+        </CenterTableStyle>
+      </CardStyle>
+    </Link>
   );
 };

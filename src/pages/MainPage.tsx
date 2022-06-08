@@ -26,6 +26,7 @@ export const MainPage = () => {
           maxRegistered={10}
           city="Poznań"
           price={10}
+          link="/tournament/1"
         />
         <Card
           title="Turniej Junikowa"
@@ -34,6 +35,7 @@ export const MainPage = () => {
           maxRegistered={10}
           city="Poznań"
           price={10}
+          link="/tournament/1"
         />
         <Card
           title="Turniej Junikowa"
@@ -42,6 +44,7 @@ export const MainPage = () => {
           maxRegistered={10}
           city="Poznań"
           price={10}
+          link="/tournament/1"
         />
         <Card
           title="Turniej Junikowa"
@@ -50,6 +53,7 @@ export const MainPage = () => {
           maxRegistered={10}
           city="Poznań"
           price={10}
+          link="/tournament/1"
         />
         <Card
           title="Turniej Junikowa"
@@ -58,6 +62,7 @@ export const MainPage = () => {
           maxRegistered={10}
           city="Poznań"
           price={10}
+          link="/tournament/1"
         />
       </TournamentContainer>
       <div className="flex justify-between items-center my-5">
@@ -72,6 +77,7 @@ export const MainPage = () => {
           maxRegistered={10}
           city="Poznań"
           price={10}
+          link="/tournament/1"
         />
         <Card
           title="Turniej Junikowa"
@@ -80,6 +86,7 @@ export const MainPage = () => {
           maxRegistered={10}
           city="Poznań"
           price={10}
+          link="/tournament/1"
         />
         <Card
           title="Turniej Junikowa"
@@ -88,6 +95,7 @@ export const MainPage = () => {
           maxRegistered={10}
           city="Poznań"
           price={10}
+          link="/tournament/1"
         />
         <Card
           title="Turniej Junikowa"
@@ -96,6 +104,7 @@ export const MainPage = () => {
           maxRegistered={10}
           city="Poznań"
           price={10}
+          link="/tournament/1"
         />
         <Card
           title="Turniej Junikowa"
@@ -104,6 +113,7 @@ export const MainPage = () => {
           maxRegistered={10}
           city="Poznań"
           price={10}
+          link="/tournament/1"
         />
         <Card
           title="Turniej Junikowa"
@@ -112,6 +122,7 @@ export const MainPage = () => {
           maxRegistered={10}
           city="Poznań"
           price={10}
+          link="/tournament/1"
         />
         <Card
           title="Turniej Junikowa"
@@ -120,6 +131,7 @@ export const MainPage = () => {
           maxRegistered={10}
           city="Poznań"
           price={10}
+          link="/tournament/1"
         />
         <Card
           title="Turniej Junikowa"
@@ -128,6 +140,7 @@ export const MainPage = () => {
           maxRegistered={10}
           city="Poznań"
           price={10}
+          link="/tournament/1"
         />
       </TournamentContainer>
     </div>
