@@ -43,6 +43,11 @@ export const OptionList = ({ className }: { className?: string }) => {
             <SpanStyle>Historia</SpanStyle>
           </Link>
         </ListElementStyle>
+        <ListElementStyle className="border-b-[1px] border-solid border-slate-400">
+          <Link to="/new_tournament">
+            <SpanStyle>Nowy turniej</SpanStyle>
+          </Link>
+        </ListElementStyle>
         <ListElementStyle className="mb-0 pb-0">
           <SpanStyle>Wyloguj</SpanStyle>
         </ListElementStyle>

@@ -17,14 +17,15 @@ type InputType = {
     placeholder?: string, 
     name?: string, 
     id?: string,
-    type?: "text" | "password" | "search",
-    className?: string
+    type?: "text" | "password" | "search" | "number" | "date" | "file",
+    className?: string,
+    [x:string]: any 
 }
 
-export const Input = ({placeholder, name, id, type="text", className} : InputType) => {
+export const Input = ({placeholder, name, id, type="text", className, ...props} : InputType) => {
   return (
     <>
-      <InputGradientStyle className={className} type={type} placeholder={placeholder} name={name} id={id}/>
+      <InputGradientStyle className={className} type={type} placeholder={placeholder} name={name} id={id} {...props}/>
     </>
   );
 };
