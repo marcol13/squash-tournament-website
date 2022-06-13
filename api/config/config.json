@@ -4,20 +4,32 @@
     "password": null,
     "database": "squash_tournaments_postgres_database",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "define": {
+      "createdAt": "created_at",
+      "updatedAt": "updated_at"
+    }
   },
   "test": {
     "username": "postgres",
     "password": null,
     "database": "squash_tournaments_postgres_database",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "define": {
+      "createdAt": "created_at",
+      "updatedAt": "updated_at"
+    }
   },
   "production": {
     "username": "postgres",
     "password": null,
     "database": "squash_tournaments_postgres_database",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "define": {
+      "createdAt": "created_at",
+      "updatedAt": "updated_at"
+    }
   }
 }
