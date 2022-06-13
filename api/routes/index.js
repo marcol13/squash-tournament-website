@@ -1,5 +1,6 @@
 const express = require("express");
 const registerApi = require("./register");
+const activateApi = require("./activate")
 // const loginApi = require("./login");
 // const paymentApi = require("./payment");
 
@@ -12,6 +13,7 @@ router.get("/", (req, res) => {
 });
 
 router.use(registerApi);
+router.use(activateApi);
 // router.use(loginApi);
 // router.use(paymentApi);
 

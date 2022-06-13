@@ -9,7 +9,7 @@ require("dotenv").config();
 // require("./models/user");
 
 const middlewares = require("./middlewares");
-const api = require("./server");
+const api = require("./routes");
 
 const app = express();
 
