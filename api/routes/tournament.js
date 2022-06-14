@@ -64,9 +64,22 @@ router.get("/tournament/:tournamentId", checkUser, async (req, res) => {
           canRegister = false;
         }
       }
-    }else{
+    } else {
       canRegister = false;
     }
+  }
+
+  let organizer = "";
+
+  if (isOrganizer) {
+    const userTemp = await User.findOne({ where: { id: req.user.id } });
+    organizer = `${userTemp.name} ${userTemp.surname}`;
+  } else {
+    const userTempId = await Participation.findOne({
+      where: { tournament_id: req.params.tournamentId, is_organizer: true },
+    });
+    const userTemp = await User.findOne({ where: { id: userTempId.user_id } });
+    organizer = `${userTemp.name} ${userTemp.surname}`;
   }
 
   const {
@@ -93,6 +106,7 @@ router.get("/tournament/:tournamentId", checkUser, async (req, res) => {
     count: countParticipation,
     canRegister,
     isOrganizer,
+    organizer,
   });
 
   //   await User.update({ is_active: true }, { where: { id: req.params.userId } })

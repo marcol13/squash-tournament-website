@@ -32,6 +32,7 @@ type InfoPageType = {
   prize?: number;
   coords: LatLngTuple;
   countParticipations: number;
+  organizer: string
 };
 
 export const InfoPage = ({
@@ -42,7 +43,8 @@ export const InfoPage = ({
   deadlineDate,
   prize,
   coords,
-  countParticipations
+  countParticipations,
+  organizer
 }: InfoPageType) => {
   function MyComponent() {
     const map = useMap();
@@ -63,7 +65,7 @@ export const InfoPage = ({
           </tr>
           <tr className="border-b-2 border-solid border-custom-dark-gray">
             <th className="pt-6 pb-1">Organizator:</th>
-            <td className="pt-6 pb-1">11 Punkt</td>
+            <td className="pt-6 pb-1">{organizer}</td>
           </tr>
           <tr className="border-b-2 border-solid border-custom-dark-gray">
             <th className="pt-6 pb-1">Ilość uczestników:</th>
@@ -89,7 +91,7 @@ export const InfoPage = ({
         <div className="h-[400px] w-2/5">
           <MapContainer
             center={coords}
-            zoom={13}
+            zoom={17}
             scrollWheelZoom={false}
             className="h-full w-full"
           >

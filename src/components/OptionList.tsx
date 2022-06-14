@@ -56,6 +56,7 @@ export const OptionList = ({ className }: { className?: string }) => {
           <SpanStyle
             onClick={() => {
               localStorage.removeItem("token");
+              localStorage.removeItem("name");
               navigate("/");
             }}
           >

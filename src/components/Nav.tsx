@@ -66,7 +66,7 @@ export const Nav = () => {
             className="flex items-center justify-end"
             onClick={() => setClickedProfile((state) => !state)}
           >
-            <SpanUserStyle>Cześć Marcin!</SpanUserStyle>
+            <SpanUserStyle>Cześć {localStorage.getItem("name")}!</SpanUserStyle>
             <ImgUserStyle src="/src/assets/img/user.png" />
           </div>
 
