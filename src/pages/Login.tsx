@@ -1,4 +1,5 @@
 import { Input } from "../components/Input";
+import { Link } from "react-router-dom";
 import tw from "tailwind-styled-components";
 import { Button } from "../components/Button";
 
@@ -27,7 +28,7 @@ export const Login = () => {
             <InputStyle type="password" name="password" id="password" />
           </div>
           <ActionStyle>Nie pamiętasz hasła? Kliknij aby zresetować</ActionStyle>
-          <ActionStyle>Nie masz jeszcze konta? Zarejestruj się</ActionStyle>
+          <Link to="/register"><ActionStyle>Nie masz jeszcze konta? Zarejestruj się</ActionStyle></Link>
           <Button className="mt-5 w-full" onClick={() => {}}>
             Zaloguj się
           </Button>

@@ -15,7 +15,7 @@ router.post("/register", async (req, res) => {
   );
 
   if (alreadyExistsUser) {
-    return res.json({ message: "User with that email already exists!" });
+    return res.json({ status: 409, error: "User with that email already exists!" });
   }
 
   const userId = uuid.v4()
@@ -26,18 +26,18 @@ router.post("/register", async (req, res) => {
     password,
     name,
     surname,
-    born_date: new Date(),
+    born_date: born_date,
     is_active: false,
     created_at: new Date(),
     updated_at: new Date(),
   });
   const savedUser = await newUser.save().catch((err) => {
     console.log("Error: ", err);
-    res.json({ error: "Cannot register user as the moment!" });
+    res.json({ status: 500, error: "Cannot register user as the moment!" });
   });
 
   if (savedUser) {
-    res.json({ message: "Thanks for registering" });
+    res.json({ status: 200, message: "Thanks for registering" });
     sendMail(name, userId)
   }
 });

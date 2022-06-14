@@ -11,6 +11,7 @@
   "dependencies": {
     "@g-loot/react-tournament-brackets": "^1.0.18-beta.1",
     "autoprefixer": "^10.4.5",
+    "axios": "^0.27.2",
     "leaflet": "^1.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
