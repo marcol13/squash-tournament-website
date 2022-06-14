@@ -1,6 +1,36 @@
 import { Button } from "../../components/Button";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export const Register = () => {
+  const [accept, setAccept] = useState(false);
+
+  const param = useParams();
+
+  const sendData = () => {
+    const data = {
+      tournament_id: param.tournamentId,
+    };
+
+    const config = {
+      headers: { "auth-token": `${localStorage.getItem("token")}` },
+    };
+
+    axios
+      .post("http://localhost:5000/api/v1/participation", data, config)
+      .then((res) => {
+        if (res.data.status != 200) {
+          throw new Error(res.data.error);
+        }
+        console.log(res);
+        location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="p-5 w-1/3 h-[400px] mb-5 overflow-y-scroll bg-custom-dark-gray">
@@ -26,12 +56,25 @@ export const Register = () => {
           type="checkbox"
           id="accept"
           name="accept"
+          checked={accept}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setAccept((accept) => !accept);
+          }}
         />
         <label className="text-red-700 font-semibold" htmlFor="accept">
           Zgadzam się ze wszystkimi punktami powyższego regulaminu
         </label>
       </div>
-      <Button className="w-[150px] mt-5" onClick={() => {}}>Zapisz się</Button>
+      <Button
+        className="w-[150px] mt-5"
+        onClick={() => {
+          if (accept) {
+            sendData();
+          }
+        }}
+      >
+        Zapisz się
+      </Button>
     </div>
   );
 };

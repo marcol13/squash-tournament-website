@@ -33,7 +33,7 @@ type InfoPageType = {
   coords: LatLngTuple;
   countParticipations: number;
   organizer: string;
-  sponsorLogos?: string[];
+  sponsorLogos: string[];
 };
 
 export const InfoPage = ({
@@ -127,7 +127,7 @@ export const InfoPage = ({
         </div>
       </div>
       <div>
-        {sponsorLogos && (
+        {sponsorLogos.length > 0 && (
           <h3 className="text-xl font-semibold text-center mb-5 text-slate-300">
             Sponsorzy:
           </h3>

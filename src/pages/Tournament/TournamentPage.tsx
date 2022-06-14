@@ -62,7 +62,7 @@ export const TournamentPage = () => {
   ] as LatLngTuple);
   const [countParticipations, setCountParticipations] = useState(0);
   const [organizerName, setOrganizerName] = useState("");
-  const [sponsorLogos, setSponsorLogos] = useState();
+  const [sponsorLogos, setSponsorLogos] = useState([]);
 
   const { tournamentId } = useParams();
 
