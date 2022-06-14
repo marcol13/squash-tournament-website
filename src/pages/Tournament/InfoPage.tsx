@@ -31,6 +31,7 @@ type InfoPageType = {
   deadlineDate: Date;
   prize?: number;
   coords: LatLngTuple;
+  countParticipations: number;
 };
 
 export const InfoPage = ({
@@ -41,6 +42,7 @@ export const InfoPage = ({
   deadlineDate,
   prize,
   coords,
+  countParticipations
 }: InfoPageType) => {
   function MyComponent() {
     const map = useMap();
@@ -65,7 +67,7 @@ export const InfoPage = ({
           </tr>
           <tr className="border-b-2 border-solid border-custom-dark-gray">
             <th className="pt-6 pb-1">Ilość uczestników:</th>
-            <td className="pt-6 pb-1">10/{maxParticipants}</td>
+            <td className="pt-6 pb-1">{countParticipations}/{maxParticipants}</td>
           </tr>
           <tr className="border-b-2 border-solid border-custom-dark-gray">
             <th className="pt-6 pb-1">Data zawodów:</th>
@@ -109,9 +111,9 @@ export const InfoPage = ({
           Sponsorzy:
         </h3>
         <div className="flex items-center justify-center gap-4">
-          <LogoImageStyle src="src/assets/img/wilson-logo.png" alt="" />
-          <LogoImageStyle src="src/assets/img/wilson-logo.png" alt="" />
-          <LogoImageStyle src="src/assets/img/wilson-logo.png" alt="" />
+          <LogoImageStyle src="/src/assets/img/wilson-logo.png" alt="" />
+          <LogoImageStyle src="/src/assets/img/wilson-logo.png" alt="" />
+          <LogoImageStyle src="/src/assets/img/wilson-logo.png" alt="" />
         </div>
       </div>
     </div>

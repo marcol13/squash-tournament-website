@@ -56,7 +56,7 @@ export const Nav = () => {
     <NavStyle>
       <Link to="/">
         <div className="flex items-center justify-start">
-          <ImgLogoStyle src="src/assets/img/player-logo.svg" />
+          <ImgLogoStyle src="/src/assets/img/player-logo.svg" />
           <SpanLogoStyle>Squash tournament generator</SpanLogoStyle>
         </div>
       </Link>
@@ -67,7 +67,7 @@ export const Nav = () => {
             onClick={() => setClickedProfile((state) => !state)}
           >
             <SpanUserStyle>Cześć Marcin!</SpanUserStyle>
-            <ImgUserStyle src="src/assets/img/user.png" />
+            <ImgUserStyle src="/src/assets/img/user.png" />
           </div>
 
           <OptionList

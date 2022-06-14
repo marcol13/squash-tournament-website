@@ -48,7 +48,8 @@ const HeaderStyle = tw.h1`
 
 export const TournamentPage = () => {
   const [selectedOption, setSelectedOption] = useState(0);
-  const [isLogged, setIsLogged] = useState(false);
+  const [canRegister, setCanRegister] = useState(false);
+  const [isOrganizer, setIsOrganizer] = useState(false);
   const [name, setName] = useState("Nazwa turnieju");
   const [minAge, setMinAge] = useState(16);
   const [maxAge, setMaxAge] = useState(20);
@@ -59,15 +60,17 @@ export const TournamentPage = () => {
   const [coords, setCoords] = useState<LatLngTuple>([
     52.37647304910926, 16.894399306634543,
   ] as LatLngTuple);
+  const [countParticipations, setCountParticipations] = useState(0);
 
   const { tournamentId } = useParams();
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setIsLogged(true);
-    }
+    const config = {
+      headers: { "auth-token": `${localStorage.getItem("token")}` },
+    };
+
     axios
-      .get(`http://localhost:5000/api/v1/tournament/${tournamentId}`)
+      .get(`http://localhost:5000/api/v1/tournament/${tournamentId}`, config)
       .then((res) => {
         if (res.data.status != 200) {
           throw new Error(res.data.error);
@@ -84,6 +87,9 @@ export const TournamentPage = () => {
             parseFloat(res.data.placeX),
             parseFloat(res.data.placeY),
           ] as LatLngTuple);
+        setCountParticipations(res.data.count);
+        setCanRegister(res.data.canRegister);
+        setIsOrganizer(res.data.isOrganizer);
 
         console.log(res);
         // navigate("/");
@@ -119,7 +125,17 @@ export const TournamentPage = () => {
           </Button>
         </div>
         <div>
-          {isLogged && (
+          {isOrganizer && (
+            <Button
+              onClick={() => {
+                setSelectedOption(2);
+              }}
+              type="secondary"
+            >
+              ✏️ Edytuj
+            </Button>
+          )}
+          {canRegister && (
             <Button
               onClick={() => {
                 setSelectedOption(2);
@@ -144,6 +160,7 @@ export const TournamentPage = () => {
           deadlineDate={deadlineDate}
           prize={prize}
           coords={coords}
+          countParticipations={countParticipations}
         />
       )}
     </div>
