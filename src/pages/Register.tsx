@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
@@ -17,6 +17,12 @@ export const Register = () => {
   const [date, setDate] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      navigate("/")
+    }
+  }, [])
 
   const validateData = (obj: object) => {
     for (const [_, value] of Object.entries(obj)) {

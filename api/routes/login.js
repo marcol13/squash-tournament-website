@@ -41,6 +41,11 @@ router.post("/login", async (req, res) => {
     email: userWithEmail.email,
   }, process.env.API_JWT_SECRET);
 
+  // const refreshToken = jwt.sign({
+  //   id: userWithEmail.id,
+  //   email: userWithEmail.email,
+  // }, process.env.API_JWT_REFRESH_SECRET)
+
   res.json({status: 200, message: "Welcome back!", token: jwtToken})
 });
 

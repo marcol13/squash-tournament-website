@@ -1,5 +1,6 @@
 import tw from "tailwind-styled-components";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ListContainerStyle = tw.div`
     w-[225px]
@@ -30,6 +31,8 @@ const SpanStyle = tw.span`
 `;
 
 export const OptionList = ({ className }: { className?: string }) => {
+  const navigate = useNavigate();
+
   return (
     <ListContainerStyle className={className}>
       <UlContainerStyle>
@@ -49,7 +52,14 @@ export const OptionList = ({ className }: { className?: string }) => {
           </Link>
         </ListElementStyle>
         <ListElementStyle className="mb-0 pb-0">
-          <SpanStyle>Wyloguj</SpanStyle>
+          <SpanStyle
+            onClick={() => {
+              localStorage.removeItem("token");
+              navigate("/");
+            }}
+          >
+            Wyloguj
+          </SpanStyle>
         </ListElementStyle>
       </UlContainerStyle>
     </ListContainerStyle>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../components/Input";
 import { Link } from "react-router-dom";
@@ -22,6 +22,12 @@ export const Login = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      navigate("/")
+    }
+  }, [])
+
   const validateData = (obj: object) => {
     for (const [_, value] of Object.entries(obj)) {
       if (value == "" || value == null) return false;
@@ -44,7 +50,8 @@ export const Login = () => {
           if (res.data.status != 200) {
             throw new Error(res.data.error);
           }
-          // console.log(res.data);
+          console.log(res.data);
+          localStorage.setItem("token", res.data.token)
           navigate("/");
         })
         .catch((err) => {

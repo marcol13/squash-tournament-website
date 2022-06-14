@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Button } from "./Button";
 import { Link } from "react-router-dom";
 import tw from "tailwind-styled-components";
@@ -40,6 +41,17 @@ export const Nav = () => {
   const [isLogged, setLogged] = useState(false);
   const [isClickedProfile, setClickedProfile] = useState(false);
 
+  const location = useLocation();
+
+  useEffect(() => {
+    setClickedProfile(false);
+    if(localStorage.getItem("token")){
+      setLogged(true)
+    }else{
+      setLogged(false)
+    }
+  }, [location]);
+
   return (
     <NavStyle>
       <Link to="/">
@@ -50,7 +62,10 @@ export const Nav = () => {
       </Link>
       {isLogged && (
         <div className="relative">
-          <div className="flex items-center justify-end" onClick={() => setClickedProfile((state) => !state)}>
+          <div
+            className="flex items-center justify-end"
+            onClick={() => setClickedProfile((state) => !state)}
+          >
             <SpanUserStyle>Cześć Marcin!</SpanUserStyle>
             <ImgUserStyle src="src/assets/img/user.png" />
           </div>
@@ -66,7 +81,7 @@ export const Nav = () => {
         <div>
           <Link to="/login">
             <Button
-              onClick={() => setLogged((state) => !state)}
+              onClick={() => {}}
               type="gradient"
               className="mx-2"
             >
@@ -76,7 +91,7 @@ export const Nav = () => {
 
           <Link to="/register">
             <Button
-              onClick={() => setLogged((state) => !state)}
+              onClick={() => {}}
               type="gradient"
             >
               Zarejestruj się
