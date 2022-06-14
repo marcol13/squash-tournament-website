@@ -10,6 +10,7 @@ const ListContainerStyle = tw.div`
     rounded-lg
     p-5
     bg-custom-dark-gray
+    z-[9999]
 `;
 
 const UlContainerStyle = tw.ul`

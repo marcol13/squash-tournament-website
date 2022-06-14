@@ -39,7 +39,7 @@ const variants = {
 };
 
 type buttonType = {
-  onClick: () => void;
+  onClick: (_?: any) => void;
   children: string;
   type?: "primary" | "secondary" | "gradient";
   className?: string;

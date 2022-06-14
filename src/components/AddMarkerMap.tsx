@@ -6,32 +6,39 @@ import {
   Popup,
   useMapEvents,
 } from "react-leaflet";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const MyComponent = () => {
+export const AddMarkerMap = ({
+  className,
+  parrentCallback,
+}: {
+  className?: string;
+  parrentCallback?: (_: any) => void;
+}) => {
   const [coord, setPosition] = useState<[number, number]>();
 
-  const removeMarker = (map: L.Map) => {
-    map.eachLayer((layer: any) => {
-      console.log(layer);
+  const MyComponent = () => {
+    const removeMarker = (map: L.Map) => {
+      map.eachLayer((layer: any) => {
+        console.log(layer);
         if (layer.options && layer.options.pane === "markerPane") {
-            map.removeLayer(layer);
+          map.removeLayer(layer);
         }
+      });
+    };
+
+    const map = useMapEvents({
+      click: (e) => {
+        const { lat, lng } = e.latlng;
+        if (coord) removeMarker(map);
+        setPosition([lat, lng]);
+        if(parrentCallback) parrentCallback([lat,lng])
+        L.marker([lat, lng]).addTo(map);
+      },
     });
+    return null;
   };
 
-  const map = useMapEvents({
-    click: (e) => {
-      const { lat, lng } = e.latlng;
-      if (coord) removeMarker(map);
-      setPosition([lat, lng]);
-      L.marker([lat, lng]).addTo(map);
-    },
-  });
-  return null;
-};
-
-export const AddMarkerMap = ({ className }: { className?: string }) => {
   return (
     <div className={className}>
       <MapContainer

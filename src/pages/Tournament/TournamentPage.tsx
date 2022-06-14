@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../../components/Button";
 import { InfoPage } from "./InfoPage";
 import { Ladder } from "./Ladder";
@@ -45,6 +45,13 @@ const HeaderStyle = tw.h1`
 
 export const TournamentPage = () => {
   const [selectedOption, setSelectedOption] = useState(0);
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsLogged(true);
+    }
+  }, []);
 
   return (
     <div>
@@ -72,14 +79,16 @@ export const TournamentPage = () => {
           </Button>
         </div>
         <div>
-          <Button
-            onClick={() => {
-              setSelectedOption(2);
-            }}
-            type="secondary"
-          >
-            ➕ Zapisz się
-          </Button>
+          {isLogged && (
+            <Button
+              onClick={() => {
+                setSelectedOption(2);
+              }}
+              type="secondary"
+            >
+              ➕ Zapisz się
+            </Button>
+          )}
         </div>
       </div>
       {selectedOption == 1 ? (
