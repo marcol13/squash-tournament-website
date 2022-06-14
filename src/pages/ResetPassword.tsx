@@ -41,8 +41,8 @@ export const ResetPassword = () => {
           if (res.data.status != 200) {
             throw new Error(res.data.error);
           }
-          console.log(res)
-        //   navigate("/");
+        //   console.log(res)
+          navigate("/");
         })
         .catch((err) => {
           console.log(err);

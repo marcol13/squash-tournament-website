@@ -5,6 +5,7 @@ const loginApi = require("./login");
 const addTournamentApi = require("./addTournament");
 const resetPassword = require("./resetPassword")
 const activatePasswordChange = require("./activatePasswordChange")
+const tournamentApi = require("./tournament")
 // const paymentApi = require("./payment");
 
 const router = express.Router();
@@ -21,6 +22,7 @@ router.use(loginApi);
 router.use(addTournamentApi);
 router.use(resetPassword);
 router.use(activatePasswordChange);
+router.use(tournamentApi);
 // router.use(paymentApi);
 
 module.exports = router;

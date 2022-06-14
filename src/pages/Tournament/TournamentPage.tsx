@@ -3,7 +3,10 @@ import { Button } from "../../components/Button";
 import { InfoPage } from "./InfoPage";
 import { Ladder } from "./Ladder";
 import tw from "tailwind-styled-components";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import { Register } from "./Register";
+import { LatLngTuple } from "leaflet";
 
 const TitleDivStyle = tw.div`
     relative
@@ -46,17 +49,54 @@ const HeaderStyle = tw.h1`
 export const TournamentPage = () => {
   const [selectedOption, setSelectedOption] = useState(0);
   const [isLogged, setIsLogged] = useState(false);
+  const [name, setName] = useState("Nazwa turnieju");
+  const [minAge, setMinAge] = useState(16);
+  const [maxAge, setMaxAge] = useState(20);
+  const [maxParticipants, setMaxParticipants] = useState(16);
+  const [date, setDate] = useState(new Date());
+  const [deadlineDate, setDeadlineDate] = useState(new Date());
+  const [prize, setPrize] = useState();
+  const [coords, setCoords] = useState<LatLngTuple>([
+    52.37647304910926, 16.894399306634543,
+  ] as LatLngTuple);
+
+  const { tournamentId } = useParams();
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setIsLogged(true);
     }
+    axios
+      .get(`http://localhost:5000/api/v1/tournament/${tournamentId}`)
+      .then((res) => {
+        if (res.data.status != 200) {
+          throw new Error(res.data.error);
+        }
+        setName(res.data.name);
+        setMinAge(res.data.minAge);
+        setMaxAge(res.data.maxAge);
+        setMaxParticipants(res.data.maxParticipants);
+        setDate(res.data.date);
+        setDeadlineDate(res.data.deadlineDate);
+        setPrize(res.data.prize);
+        if (res.data.placeX)
+          setCoords([
+            parseFloat(res.data.placeX),
+            parseFloat(res.data.placeY),
+          ] as LatLngTuple);
+
+        console.log(res);
+        // navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
     <div>
       <TitleDivStyle>
-        <HeaderStyle>Turniej Junikowa</HeaderStyle>
+        <HeaderStyle>{name}</HeaderStyle>
       </TitleDivStyle>
       <div className="flex justify-between mb-5">
         <div>
@@ -96,7 +136,15 @@ export const TournamentPage = () => {
       ) : selectedOption == 2 ? (
         <Register />
       ) : (
-        <InfoPage />
+        <InfoPage
+          minAge={minAge}
+          maxAge={maxAge}
+          maxParticipants={maxParticipants}
+          date={date}
+          deadlineDate={deadlineDate}
+          prize={prize}
+          coords={coords}
+        />
       )}
     </div>
   );
