@@ -32,7 +32,8 @@ type InfoPageType = {
   prize?: number;
   coords: LatLngTuple;
   countParticipations: number;
-  organizer: string
+  organizer: string;
+  sponsorLogos?: string[];
 };
 
 export const InfoPage = ({
@@ -44,7 +45,8 @@ export const InfoPage = ({
   prize,
   coords,
   countParticipations,
-  organizer
+  organizer,
+  sponsorLogos,
 }: InfoPageType) => {
   function MyComponent() {
     const map = useMap();
@@ -69,11 +71,20 @@ export const InfoPage = ({
           </tr>
           <tr className="border-b-2 border-solid border-custom-dark-gray">
             <th className="pt-6 pb-1">Ilość uczestników:</th>
-            <td className="pt-6 pb-1">{countParticipations}/{maxParticipants}</td>
+            <td className="pt-6 pb-1">
+              {countParticipations}/{maxParticipants}
+            </td>
           </tr>
           <tr className="border-b-2 border-solid border-custom-dark-gray">
             <th className="pt-6 pb-1">Data zawodów:</th>
-            <td className="pt-6 pb-1">{new Date(date).toLocaleString('pl-PL', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>
+            <td className="pt-6 pb-1">
+              {new Date(date).toLocaleString("pl-PL", {
+                weekday: "long",
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </td>
           </tr>
           <tr className="border-b-2 border-solid border-custom-dark-gray">
             <th className="pt-6 pb-1">Miejsce zawodów:</th>
@@ -81,7 +92,14 @@ export const InfoPage = ({
           </tr>
           <tr className="border-b-2 border-solid border-custom-dark-gray">
             <th className="pt-6 pb-1">Deadline zapisów:</th>
-            <td className="pt-6 pb-1">{new Date(deadlineDate).toLocaleString('pl-PL', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</td>
+            <td className="pt-6 pb-1">
+              {new Date(deadlineDate).toLocaleString("pl-PL", {
+                weekday: "long",
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </td>
           </tr>
           <tr className="border-b-2 border-solid border-custom-dark-gray">
             <th className="pt-6 pb-1">Nagroda:</th>
@@ -109,13 +127,16 @@ export const InfoPage = ({
         </div>
       </div>
       <div>
-        <h3 className="text-xl font-semibold text-center mb-5 text-slate-300">
-          Sponsorzy:
-        </h3>
+        {sponsorLogos && (
+          <h3 className="text-xl font-semibold text-center mb-5 text-slate-300">
+            Sponsorzy:
+          </h3>
+        )}
+
         <div className="flex items-center justify-center gap-4">
-          <LogoImageStyle src="/src/assets/img/wilson-logo.png" alt="" />
-          <LogoImageStyle src="/src/assets/img/wilson-logo.png" alt="" />
-          <LogoImageStyle src="/src/assets/img/wilson-logo.png" alt="" />
+          {sponsorLogos?.map((el, index) => {
+            return <LogoImageStyle src={el} key={index} />;
+          })}
         </div>
       </div>
     </div>

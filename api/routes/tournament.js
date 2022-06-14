@@ -1,5 +1,5 @@
 const express = require("express");
-const { Tournament, Participation, User } = require("../models");
+const { Tournament, Participation, User, Sponsor } = require("../models");
 const checkUser = require("./checkUser");
 
 const router = express.Router();
@@ -81,6 +81,12 @@ router.get("/tournament/:tournamentId", checkUser, async (req, res) => {
     const userTemp = await User.findOne({ where: { id: userTempId.user_id } });
     organizer = `${userTemp.name} ${userTemp.surname}`;
   }
+  
+  const sponsors = await Sponsor.findAll({where: {tournament_id: req.params.tournamentId}})
+
+  const sponsorLogos = sponsors.map((el) => el.image.toString())
+
+  console.log(sponsorLogos.length)
 
   const {
     name,
@@ -91,6 +97,7 @@ router.get("/tournament/:tournamentId", checkUser, async (req, res) => {
     deadline_date,
     place_x,
     place_y,
+    price
   } = isExistingTournament;
 
   res.json({
@@ -107,6 +114,8 @@ router.get("/tournament/:tournamentId", checkUser, async (req, res) => {
     canRegister,
     isOrganizer,
     organizer,
+    sponsorLogos,
+    prize: price
   });
 
   //   await User.update({ is_active: true }, { where: { id: req.params.userId } })

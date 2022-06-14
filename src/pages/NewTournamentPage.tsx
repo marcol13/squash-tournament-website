@@ -18,7 +18,6 @@ export const NewTournamentPage = () => {
   const [name, setName] = useState<string | undefined>();
   const [minAge, setMinAge] = useState<number | undefined>();
   const [maxAge, setMaxAge] = useState<number | undefined>();
-  const [organizer, setOrganizer] = useState<string | undefined>();
   const [eventDate, setEventDate] = useState<string | undefined>();
   const [maxSpots, setMaxSpots] = useState<number | undefined>();
   const [deadline, setDeadline] = useState<string | undefined>();
@@ -79,7 +78,6 @@ export const NewTournamentPage = () => {
       name,
       min_age: minAge,
       max_age: maxAge,
-      organizer,
       date: eventDate,
       max_participants: maxSpots,
       deadline_date: deadline,
@@ -156,16 +154,6 @@ export const NewTournamentPage = () => {
               id="max-age"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setMaxAge(parseInt(e.target.value))
-              }
-            />
-
-            <label htmlFor="administrator"> Organizator:</label>
-            <Input
-              className="ml-3"
-              name="administrator"
-              id="administrator"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setOrganizer(e.target.value)
               }
             />
 

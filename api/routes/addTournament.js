@@ -1,6 +1,6 @@
 const express = require("express");
 const uuid = require("uuid");
-const { Tournament, Participation } = require("../models");
+const { Tournament, Participation, Sponsor } = require("../models");
 const verify = require("./verify");
 
 const router = express.Router();
@@ -10,7 +10,6 @@ router.post("/add_tournament", verify, async (req, res) => {
     name,
     min_age,
     max_age,
-    organizer,
     date,
     max_participants,
     deadline_date,
@@ -63,6 +62,21 @@ router.post("/add_tournament", verify, async (req, res) => {
         error: "Cannot register tournament at the moment!",
       });
     });
+
+    console.log(sponsors.length);
+    for (let el of sponsors) {
+      const newSponsor = new Sponsor({
+        tournament_id: tournamentId,
+        image: el,
+      });
+
+      await newSponsor.save().catch((err) => {
+        return res.json({
+          status: 500,
+          error: "Cannor register sponsor logo!",
+        });
+      });
+    }
 
     if (savedParticipation)
       res.json({ status: 200, message: "Thanks for tournament registering" });

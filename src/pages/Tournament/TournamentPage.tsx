@@ -62,6 +62,7 @@ export const TournamentPage = () => {
   ] as LatLngTuple);
   const [countParticipations, setCountParticipations] = useState(0);
   const [organizerName, setOrganizerName] = useState("");
+  const [sponsorLogos, setSponsorLogos] = useState();
 
   const { tournamentId } = useParams();
 
@@ -91,7 +92,8 @@ export const TournamentPage = () => {
         setCountParticipations(res.data.count);
         setCanRegister(res.data.canRegister);
         setIsOrganizer(res.data.isOrganizer);
-        setOrganizerName(res.data.organizer)
+        setOrganizerName(res.data.organizer);
+        setSponsorLogos(res.data.sponsorLogos);
 
         console.log(res);
         // navigate("/");
@@ -164,6 +166,7 @@ export const TournamentPage = () => {
           coords={coords}
           countParticipations={countParticipations}
           organizer={organizerName}
+          sponsorLogos={sponsorLogos}
         />
       )}
     </div>
