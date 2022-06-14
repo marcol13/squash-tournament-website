@@ -55,7 +55,7 @@ async function sendMail(name, id) {
     from: '"Michał Paletka 🎾" <squash-tournament-generator@outlook.com>', // sender address
     to: "marcinkrueger@onet.eu", // list of receivers
     subject: "Squash tournament generator - aktywacja konta", // Subject line
-    text: `Link do aktywacji konta: http://localhost:5050/api/v1/activate/${id}`, // plain text body
+    text: `Link do aktywacji konta: http://localhost:5000/api/v1/activate/${id}`, // plain text body
     html: `<b>Cześć ${name}!</b><br><span><a href="http://localhost:5000/api/v1/activate/${id}">Link aktywacyjny</a></span>`, // html body
   });
 }
