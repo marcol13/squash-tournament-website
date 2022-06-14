@@ -46,8 +46,8 @@ async function sendMail(name, id) {
   let transporter = nodemailer.createTransport({
     service: "hotmail",
     auth: {
-      user: "squash-tournament-generator@outlook.com", // generated ethereal user
-      pass: "LubieUczelniePP", // generated ethereal password
+      user: process.env.API_MAIL, // generated ethereal user
+      pass: process.env.API_MAIL_PASSWORD, // generated ethereal password
     },
   });
 
