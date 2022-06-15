@@ -57,6 +57,7 @@ export const OptionList = ({ className }: { className?: string }) => {
             onClick={() => {
               localStorage.removeItem("token");
               localStorage.removeItem("name");
+              localStorage.removeItem("surname");
               navigate("/");
             }}
           >

@@ -52,7 +52,8 @@ export const Login = () => {
           }
           console.log(res.data);
           localStorage.setItem("token", res.data.token);
-          localStorage.setItem("name", res.data.name)
+          localStorage.setItem("name", res.data.name);
+          localStorage.setItem("surname", res.data.surname);
           navigate("/");
         })
         .catch((err) => {

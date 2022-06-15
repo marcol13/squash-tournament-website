@@ -19,6 +19,7 @@ const TournamentContainer = tw.div`
 
 export const MainPage = () => {
   const [nextTournaments, setNextTournaments] = useState<any[]>([]);
+  const [pastTournaments, setPastTournaments] = useState<any[]>([]);
   const [pageNum, setPageNum] = useState(0);
   const [maxPage, setMaxPage] = useState(0);
 
@@ -38,60 +39,46 @@ export const MainPage = () => {
       });
   }, [pageNum]);
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v1/past_tournaments`)
+      .then((res) => {
+        if (res.data.status != 200) {
+          throw new Error(res.data.error);
+        }
+        console.log(res.data);
+        setPastTournaments(res.data.tournaments);
+      })
+      .catch((err) => {
+        console.log({ err });
+      });
+  }, []);
+
   return (
     <div>
       <HeaderStyle>Ostatnio rozegrane</HeaderStyle>
       <TournamentContainer>
-        <Card
-          title="Turniej Junikowa"
-          date="20.05.2022"
-          registered={10}
-          maxRegistered={10}
-          minAge={10}
-          maxAge={55}
-          price={10}
-          link="/tournament/1"
-        />
-        <Card
-          title="Turniej Junikowa"
-          date="20.05.2022"
-          registered={10}
-          maxRegistered={10}
-          minAge={10}
-          maxAge={55}
-          price={10}
-          link="/tournament/1"
-        />
-        <Card
-          title="Turniej Junikowa"
-          date="20.05.2022"
-          registered={10}
-          maxRegistered={10}
-          minAge={10}
-          maxAge={55}
-          price={10}
-          link="/tournament/1"
-        />
-        <Card
-          title="Turniej Junikowa"
-          date="20.05.2022"
-          registered={10}
-          maxRegistered={10}
-          minAge={10}
-          maxAge={55}
-          price={10}
-          link="/tournament/1"
-        />
-        <Card
-          title="Turniej Junikowa"
-          date="20.05.2022"
-          registered={10}
-          maxRegistered={10}
-          minAge={10}
-          maxAge={55}
-          price={10}
-          link="/tournament/2"
-        />
+        {pastTournaments.map((el) => {
+          const date = new Date(el.date).toLocaleString("pl-PL", {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+          });
+          return (
+            <Card
+              title={el.name}
+              date={date}
+              registered={el.count}
+              maxRegistered={el.max_participants}
+              minAge={el.min_age}
+              maxAge={el.max_age}
+              price={el.price}
+              key={el.id}
+              image={el.image}
+              link={`/tournament/${el.id}`}
+            />
+          );
+        })}
       </TournamentContainer>
       <div className="flex justify-between items-center my-5">
         <HeaderStyle>Zbliżające się turnieje</HeaderStyle>

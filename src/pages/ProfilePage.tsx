@@ -1,5 +1,7 @@
 import tw from "tailwind-styled-components";
 import { Card } from "../components/Card";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const ProfilePageStyle = tw.div`
     flex
@@ -10,6 +12,26 @@ const ProfilePageStyle = tw.div`
 `;
 
 export const ProfilePage = () => {
+  const [tournaments, setTournaments] = useState<any[]>([]);
+
+  useEffect(() => {
+    const config = {
+      headers: { "auth-token": `${localStorage.getItem("token")}` },
+    };
+    axios
+      .get(`http://localhost:5000/api/v1/upcoming_tournaments`, config)
+      .then((res) => {
+        if (res.data.status != 200) {
+          throw new Error(res.data.error);
+        }
+        console.log(res.data);
+        setTournaments(res.data.tournaments);
+      })
+      .catch((err) => {
+        console.log({ err });
+      });
+  }, []);
+
   return (
     <ProfilePageStyle>
       <img
@@ -18,7 +40,7 @@ export const ProfilePage = () => {
         alt=""
       />
       <div className="my-5 text-3xl">
-        <span>Marcin</span> <span>Krueger</span>
+        <span>{localStorage.getItem("name")} {localStorage.getItem("surname")}</span>
       </div>
       <h3 className="text-xl mb-5">Statystyki:</h3>
       <table className="w-[600px] text-center table-fixed text-lg mb-5">
@@ -49,8 +71,27 @@ export const ProfilePage = () => {
       </table>
       <h3 className="text-xl mb-5">Nadchodzące turnieje:</h3>
       <div className="grid grid-cols-5 content-center justify-center items-center gap-5">
-          <Card city="Poznań" date="10.06.2022" maxRegistered={20} link="tournament/1" registered={5} title="Turniej Marcina" price={200}/>
-          <Card city="Poznań" date="10.06.2022" maxRegistered={20} link="tournament/1" registered={5} title="Turniej Marcina" price={200}/>
+        {tournaments.map((el) => {
+          const date = new Date(el.date).toLocaleString("pl-PL", {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+          });
+          return (
+            <Card
+              title={el.name}
+              date={date}
+              registered={el.count}
+              maxRegistered={el.max_participants}
+              minAge={el.min_age}
+              maxAge={el.max_age}
+              price={el.price}
+              key={el.id}
+              image={el.image}
+              link={`/tournament/${el.id}`}
+            />
+          );
+        })}
       </div>
     </ProfilePageStyle>
   );
