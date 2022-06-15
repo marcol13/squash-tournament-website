@@ -1,5 +1,6 @@
 import tw from "tailwind-styled-components";
 import { useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { AddMarkerMap } from "../components/AddMarkerMap";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
@@ -27,6 +28,8 @@ export const NewTournamentPage = () => {
   const [coords, setCoords] = useState<[number, number]>();
 
   const [minDate, setMinDate] = useState(minDateInit);
+
+  const navigate = useNavigate()
 
   const coordsCallback = useCallback((coords: [number, number]) => {
     setCoords(coords);
@@ -104,7 +107,7 @@ export const NewTournamentPage = () => {
           if (res.data.status != 200) {
             throw new Error(res.data.error);
           }
-          // navigate("/");
+          navigate("/");
         })
         .catch((err) => {
           console.log(err);

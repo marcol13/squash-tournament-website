@@ -7,6 +7,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Register } from "./Register";
 import { LatLngTuple } from "leaflet";
+import { UpdateTournament } from "./UpdateTournament";
 
 const TitleDivStyle = tw.div`
     relative
@@ -56,7 +57,7 @@ export const TournamentPage = () => {
   const [maxParticipants, setMaxParticipants] = useState(16);
   const [date, setDate] = useState(new Date());
   const [deadlineDate, setDeadlineDate] = useState(new Date());
-  const [prize, setPrize] = useState();
+  const [prize, setPrize] = useState(0);
   const [coords, setCoords] = useState<LatLngTuple>([
     52.37647304910926, 16.894399306634543,
   ] as LatLngTuple);
@@ -132,7 +133,7 @@ export const TournamentPage = () => {
           {isOrganizer && (
             <Button
               onClick={() => {
-                setSelectedOption(2);
+                setSelectedOption(3);
               }}
               type="secondary"
             >
@@ -155,6 +156,15 @@ export const TournamentPage = () => {
         <Ladder />
       ) : selectedOption == 2 ? (
         <Register />
+      ) : selectedOption == 3 ? (
+        <UpdateTournament
+          nameArg={name}
+          minAgeArg={minAge}
+          maxAgeArg={maxAge}
+          eventDateArg={date.toString()}
+          deadlineArg={deadlineDate.toString()}
+          prizeArg={prize}
+        />
       ) : (
         <InfoPage
           minAge={minAge}

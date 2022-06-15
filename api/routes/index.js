@@ -11,6 +11,7 @@ const nextTournamentsApi = require("./nextTournaments")
 const pastTournamentsApi = require("./pastTournaments")
 const historyTournamentsApi = require("./historyTournaments")
 const upcomingTournamentsApi = require("./upcomingTournaments")
+const editTournamentsApi = require("./editTournament")
 // const paymentApi = require("./payment");
 
 const router = express.Router();
@@ -33,6 +34,7 @@ router.use(nextTournamentsApi);
 router.use(pastTournamentsApi);
 router.use(historyTournamentsApi);
 router.use(upcomingTournamentsApi);
+router.use(editTournamentsApi);
 // router.use(paymentApi);
 
 module.exports = router;

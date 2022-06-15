@@ -67,7 +67,7 @@ export const Card = ({
     <Link to={link}>
       <CardStyle>
         <h3 className="text-lg font-semibold mb-3 text-center">{title}</h3>
-        <img className="rounded-lg object-cover mb-3" src={image} />
+        <img className="rounded-lg object-contain mb-3 w-full h-[150px]" src={image} />
         <CenterTableStyle>
           <TableInfoStyle>
             <tr>
