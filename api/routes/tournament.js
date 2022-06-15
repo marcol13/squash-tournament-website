@@ -97,6 +97,7 @@ router.get("/tournament/:tournamentId", checkUser, async (req, res) => {
     deadline_date,
     place_x,
     place_y,
+    place,
     price
   } = isExistingTournament;
 
@@ -115,7 +116,8 @@ router.get("/tournament/:tournamentId", checkUser, async (req, res) => {
     isOrganizer,
     organizer,
     sponsorLogos,
-    prize: price
+    prize: price,
+    place
   });
 
   //   await User.update({ is_active: true }, { where: { id: req.params.userId } })

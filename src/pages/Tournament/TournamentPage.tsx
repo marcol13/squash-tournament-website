@@ -64,6 +64,7 @@ export const TournamentPage = () => {
   const [countParticipations, setCountParticipations] = useState(0);
   const [organizerName, setOrganizerName] = useState("");
   const [sponsorLogos, setSponsorLogos] = useState([]);
+  const [place, setPlace] = useState("");
 
   const { tournamentId } = useParams();
 
@@ -95,6 +96,7 @@ export const TournamentPage = () => {
         setIsOrganizer(res.data.isOrganizer);
         setOrganizerName(res.data.organizer);
         setSponsorLogos(res.data.sponsorLogos);
+        setPlace(res.data.place)
 
         console.log(res);
         // navigate("/");
@@ -153,7 +155,7 @@ export const TournamentPage = () => {
         </div>
       </div>
       {selectedOption == 1 ? (
-        <Ladder />
+        <Ladder isOrganizer/>
       ) : selectedOption == 2 ? (
         <Register />
       ) : selectedOption == 3 ? (
@@ -177,6 +179,7 @@ export const TournamentPage = () => {
           countParticipations={countParticipations}
           organizer={organizerName}
           sponsorLogos={sponsorLogos}
+          place={place}
         />
       )}
     </div>

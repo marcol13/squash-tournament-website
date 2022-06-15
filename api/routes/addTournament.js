@@ -16,6 +16,7 @@ router.post("/add_tournament", verify, async (req, res) => {
     price,
     sponsors,
     image,
+    place,
     place_x,
     place_y,
   } = req.body;
@@ -37,6 +38,7 @@ router.post("/add_tournament", verify, async (req, res) => {
     deadline_date,
     price,
     image: imageTournament,
+    place,
     place_x,
     place_y,
     created_at: new Date(),

@@ -1,54 +1,54 @@
-'use strict';
+"use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('users', {
+    await queryInterface.createTable("users", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4,
       },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       name: {
-          type: Sequelize.STRING,
-          allowNull: false
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       surname: {
-          type: Sequelize.STRING,
-          allowNull: false
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       born_date: {
-          type: Sequelize.DATE,
-          allowNull: false
+        type: Sequelize.DATE,
+        allowNull: false,
       },
       is_active: {
-          type: Sequelize.BOOLEAN,
-          defaultValue: false
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
 
-    await queryInterface.createTable('tournaments', {
+    await queryInterface.createTable("tournaments", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4,
       },
       name: {
         type: Sequelize.STRING,
@@ -56,30 +56,39 @@ module.exports = {
       },
       min_age: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       max_age: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       date: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
       },
       place_x: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: true,
       },
       place_y: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: true,
       },
       max_participants: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        validate:{
-          min: 2
-        }
+        validate: {
+          min: 2,
+        },
+      },
+      place: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      isLadderGenerate: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       },
       deadline_date: {
         type: Sequelize.DATE,
@@ -87,119 +96,119 @@ module.exports = {
       },
       price: {
         type: Sequelize.INTEGER,
-        allowNull: true
+        allowNull: true,
       },
       image: {
         type: Sequelize.BLOB,
-        allowNull: true
+        allowNull: true,
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
 
-    await queryInterface.createTable('participations', {
+    await queryInterface.createTable("participations", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4,
       },
       tournament_id: {
         type: Sequelize.UUID,
         allowNull: false,
         references: {
           model: "tournaments",
-          key: "id"
-        }
+          key: "id",
+        },
       },
       user_id: {
         type: Sequelize.UUID,
         allowNull: false,
         references: {
           model: "users",
-          key: "id"
-        }
+          key: "id",
+        },
       },
       is_organizer: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: false
+        defaultValue: false,
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
 
-    await queryInterface.createTable('matches', {
+    await queryInterface.createTable("matches", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4,
       },
       participation_first_id: {
         type: Sequelize.UUID,
         allowNull: false,
         references: {
           model: "participations",
-          key: "id"
-        }
+          key: "id",
+        },
       },
       score_participation_first: {
         type: Sequelize.INTEGER,
-        allowNull: true
+        allowNull: true,
       },
       participation_second_id: {
         type: Sequelize.UUID,
         allowNull: false,
         references: {
           model: "participations",
-          key: "id"
-        }
+          key: "id",
+        },
       },
       score_participation_second: {
         type: Sequelize.INTEGER,
-        allowNull: true
+        allowNull: true,
       },
       next_match: {
         type: Sequelize.UUID,
         allowNull: true,
         references: {
           model: "matches",
-          key: "id"
-        }
+          key: "id",
+        },
       },
       status: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
 
-    await queryInterface.createTable('sponsors', {
+    await queryInterface.createTable("sponsors", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4,
       },
       image: {
         type: Sequelize.BLOB,
@@ -210,21 +219,20 @@ module.exports = {
         allowNull: false,
         references: {
           model: "tournaments",
-          key: "id"
-        }
+          key: "id",
+        },
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
-
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropAllTables();
-  }
+  },
 };

@@ -34,6 +34,7 @@ type InfoPageType = {
   countParticipations: number;
   organizer: string;
   sponsorLogos: string[];
+  place: string;
 };
 
 export const InfoPage = ({
@@ -47,6 +48,7 @@ export const InfoPage = ({
   countParticipations,
   organizer,
   sponsorLogos,
+  place,
 }: InfoPageType) => {
   function MyComponent() {
     const map = useMap();
@@ -88,7 +90,7 @@ export const InfoPage = ({
           </tr>
           <tr className="border-b-2 border-solid border-custom-dark-gray">
             <th className="pt-6 pb-1">Miejsce zawodów:</th>
-            <td className="pt-6 pb-1">Górecka 108, 61-483 Poznań</td>
+            <td className="pt-6 pb-1">{place}</td>
           </tr>
           <tr className="border-b-2 border-solid border-custom-dark-gray">
             <th className="pt-6 pb-1">Deadline zapisów:</th>

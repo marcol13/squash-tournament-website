@@ -26,10 +26,11 @@ export const NewTournamentPage = () => {
   const [sponsors, setSponsors] = useState<string[]>([]);
   const [image, setImage] = useState<string[] | undefined>();
   const [coords, setCoords] = useState<[number, number]>();
+  const [place, setPlace] = useState<string | undefined>();
 
   const [minDate, setMinDate] = useState(minDateInit);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const coordsCallback = useCallback((coords: [number, number]) => {
     setCoords(coords);
@@ -65,6 +66,7 @@ export const NewTournamentPage = () => {
       "date",
       "max_participants",
       "deadline_date",
+      "place"
     ];
     for (const [key, value] of Object.entries(obj)) {
       if (
@@ -87,6 +89,7 @@ export const NewTournamentPage = () => {
       price: prize,
       sponsors: sponsors,
       image: image,
+      place,
       place_x: coords !== undefined ? coords[0].toString() : null,
       place_y: coords !== undefined ? coords[1].toString() : null,
     };
@@ -97,7 +100,7 @@ export const NewTournamentPage = () => {
       headers: { "auth-token": `${localStorage.getItem("token")}` },
     };
 
-    console.log(`abcd ${localStorage.getItem("token")}`)
+    console.log(`abcd ${localStorage.getItem("token")}`);
 
     if (validateData(data)) {
       axios
@@ -157,6 +160,17 @@ export const NewTournamentPage = () => {
               id="max-age"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setMaxAge(parseInt(e.target.value))
+              }
+            />
+
+            <label htmlFor="place"> Miejsce wydarzenia:</label>
+
+            <Input
+              className="ml-3"
+              name="place"
+              id="place"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setPlace(e.target.value)
               }
             />
 

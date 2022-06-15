@@ -61,6 +61,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BLOB,
         allowNull: true,
       },
+      place: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      isLadderGenerate: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       created_at: {
         allowNull: false,
         type: DataTypes.DATE,
