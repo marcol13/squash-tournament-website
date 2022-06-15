@@ -45,25 +45,28 @@ type CardType = {
   date: string;
   registered: number;
   maxRegistered: number;
-  city: string;
+  minAge: number;
+  maxAge: number;
   price?: number;
   link: string;
 };
 
 export const Card = ({
   title,
-  image = "src/assets/img/tournament-card-placeholder.jpg",
+  image = "/src/assets/img/tournament-card-placeholder.jpg",
   date,
   registered,
   maxRegistered,
-  city,
+  minAge,
+  maxAge,
   price = 0,
   link,
 }: CardType) => {
+  if (!image) image = "/src/assets/img/tournament-card-placeholder.jpg";
   return (
     <Link to={link}>
       <CardStyle>
-        <h3 className="text-lg font-semibold mb-3">{title}</h3>
+        <h3 className="text-lg font-semibold mb-3 text-center">{title}</h3>
         <img className="rounded-lg object-cover mb-3" src={image} />
         <CenterTableStyle>
           <TableInfoStyle>
@@ -75,7 +78,9 @@ export const Card = ({
               </CellInfoStyle>
             </tr>
             <tr>
-              <CellInfoStyle className="w-3/5">📍 {city}</CellInfoStyle>
+              <CellInfoStyle className="w-3/5">
+                👴 {minAge}-{maxAge}
+              </CellInfoStyle>
               <CellInfoStyle className="w-2/5">🏆 {price}zł</CellInfoStyle>
             </tr>
           </TableInfoStyle>

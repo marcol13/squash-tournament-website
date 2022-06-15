@@ -230,7 +230,6 @@ export const NewTournamentPage = () => {
               accept="image/png, image/jpeg"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setImage(handleImageLoad(e));
-                console.log(image);
               }}
             />
           </FormColumnStyle>

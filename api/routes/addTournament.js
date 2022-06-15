@@ -20,6 +20,11 @@ router.post("/add_tournament", verify, async (req, res) => {
     place_y,
   } = req.body;
 
+  console.log({image})
+  console.log({sponsors})
+
+  const imageTournament = image ? image[0] : null
+
   const tournamentId = uuid.v4();
 
   const newTournament = new Tournament({
@@ -31,7 +36,7 @@ router.post("/add_tournament", verify, async (req, res) => {
     max_participants,
     deadline_date,
     price,
-    image,
+    image: imageTournament,
     place_x,
     place_y,
     created_at: new Date(),

@@ -13,7 +13,8 @@ export const HistoryPage = () => {
       <h3 className="text-3xl mb-5 text-custom-white">Historia turniejów</h3>
       <TournamentContainer>
         <Card
-          city="Poznań"
+          minAge={10}
+          maxAge={55}
           date="10.06.2022"
           maxRegistered={20}
           link="tournament/1"
@@ -22,7 +23,8 @@ export const HistoryPage = () => {
           price={200}
         />
         <Card
-          city="Poznań"
+          minAge={10}
+          maxAge={55}
           date="10.06.2022"
           maxRegistered={20}
           link="tournament/1"
@@ -31,7 +33,8 @@ export const HistoryPage = () => {
           price={200}
         />
         <Card
-          city="Poznań"
+          minAge={10}
+          maxAge={55}
           date="10.06.2022"
           maxRegistered={20}
           link="tournament/1"
@@ -40,7 +43,8 @@ export const HistoryPage = () => {
           price={200}
         />
         <Card
-          city="Poznań"
+          minAge={10}
+          maxAge={55}
           date="10.06.2022"
           maxRegistered={20}
           link="tournament/1"
@@ -49,7 +53,8 @@ export const HistoryPage = () => {
           price={200}
         />
         <Card
-          city="Poznań"
+          minAge={10}
+          maxAge={55}
           date="10.06.2022"
           maxRegistered={20}
           link="tournament/1"
@@ -58,7 +63,8 @@ export const HistoryPage = () => {
           price={200}
         />
         <Card
-          city="Poznań"
+          minAge={10}
+          maxAge={55}
           date="10.06.2022"
           maxRegistered={20}
           link="tournament/1"
@@ -67,7 +73,8 @@ export const HistoryPage = () => {
           price={200}
         />
         <Card
-          city="Poznań"
+          minAge={10}
+          maxAge={55}
           date="10.06.2022"
           maxRegistered={20}
           link="tournament/1"
@@ -76,7 +83,8 @@ export const HistoryPage = () => {
           price={200}
         />
         <Card
-          city="Poznań"
+          minAge={10}
+          maxAge={55}
           date="10.06.2022"
           maxRegistered={20}
           link="tournament/1"
