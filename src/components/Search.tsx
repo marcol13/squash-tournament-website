@@ -1,11 +1,20 @@
-import {Button} from "./Button"
-import { Input } from "./Input"
+import React from "react";
+import { Button } from "./Button";
+import { Input } from "./Input";
 
-export const Search = ({inputPlaceholder} : {inputPlaceholder?: string}) => {
-    return(
-        <div>
-            <Input type="search" placeholder={inputPlaceholder ?? ""}/>
-            <Button onClick={() => {}}>Wyszukaj</Button>
-        </div>
-    )
-}
+export const Search = ({
+  inputPlaceholder,
+  onClick,
+  value,
+}: {
+  inputPlaceholder?: string;
+  onClick: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+}) => {
+  return (
+    <div>
+      <Input type="search" value={value} placeholder={inputPlaceholder ?? ""} />
+      <Button onClick={onClick}>Wyszukaj</Button>
+    </div>
+  );
+};

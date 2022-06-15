@@ -4,6 +4,7 @@ import { Search } from "./../components/Search";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "../components/Button";
+import { Input } from "../components/Input";
 
 const HeaderStyle = tw.h2`
     text-3xl
@@ -22,10 +23,13 @@ export const MainPage = () => {
   const [pastTournaments, setPastTournaments] = useState<any[]>([]);
   const [pageNum, setPageNum] = useState(0);
   const [maxPage, setMaxPage] = useState(0);
+  const [searchString, setSearchString] = useState("");
+  const [searchAccepted, setSearchAccepted] = useState("");
 
   useEffect(() => {
+    const addition = searchAccepted != "" ? `/?search=${searchAccepted}` : ""
     axios
-      .get(`http://localhost:5000/api/v1/next_tournaments/${pageNum}`)
+      .get(`http://localhost:5000/api/v1/next_tournaments/${pageNum}${addition}`)
       .then((res) => {
         if (res.data.status != 200) {
           throw new Error(res.data.error);
@@ -37,7 +41,7 @@ export const MainPage = () => {
       .catch((err) => {
         console.log({ err });
       });
-  }, [pageNum]);
+  }, [pageNum, searchAccepted]);
 
   useEffect(() => {
     axios
@@ -82,7 +86,14 @@ export const MainPage = () => {
       </TournamentContainer>
       <div className="flex justify-between items-center my-5">
         <HeaderStyle>Zbliżające się turnieje</HeaderStyle>
-        <Search inputPlaceholder="Nazwa turnieju" />
+        <div>
+          <Input
+            type="search"
+            placeholder={"Wyszukaj turniej"}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchString(e.target.value)}
+          />
+          <Button onClick={() => {setSearchAccepted(searchString)}}>Wyszukaj</Button>
+        </div>
       </div>
       <TournamentContainer>
         {nextTournaments.map((el) => {

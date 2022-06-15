@@ -5,22 +5,45 @@ const { Op } = require("sequelize");
 const router = express.Router();
 
 router.get("/next_tournaments/:tenths", async (req, res) => {
-  let tournaments = await Tournament.findAll({
-    offset: req.params.tenths * 10,
-    limit: 10,
-    order: [["date", "ASC"]],
-    where: { date: { [Op.gte]: new Date() } },
-    attributes: [
-      "id",
-      "name",
-      "date",
-      "min_age",
-      "max_age",
-      "max_participants",
-      "price",
-      "image",
-    ],
-  });
+  let tournaments = [];
+  if (req.query.search) {
+    tournaments = await Tournament.findAll({
+      offset: req.params.tenths * 10,
+      limit: 10,
+      order: [["date", "ASC"]],
+      where: {
+        date: { [Op.gte]: new Date() },
+        name: { [Op.like]: "%" + req.query.search + "%" },
+      },
+      attributes: [
+        "id",
+        "name",
+        "date",
+        "min_age",
+        "max_age",
+        "max_participants",
+        "price",
+        "image",
+      ],
+    });
+  } else {
+    tournaments = await Tournament.findAll({
+      offset: req.params.tenths * 10,
+      limit: 10,
+      order: [["date", "ASC"]],
+      where: { date: { [Op.gte]: new Date() } },
+      attributes: [
+        "id",
+        "name",
+        "date",
+        "min_age",
+        "max_age",
+        "max_participants",
+        "price",
+        "image",
+      ],
+    });
+  }
 
   if (!tournaments) {
     res.json({ status: 404, error: "No data available" });
@@ -36,7 +59,9 @@ router.get("/next_tournaments/:tenths", async (req, res) => {
         tournaments[i]["dataValues"]["image"].toString();
   }
 
-  const all = await Tournament.count({ where: { date: { [Op.gte]: new Date() } } });
+  const all = await Tournament.count({
+    where: { date: { [Op.gte]: new Date() } },
+  });
 
   res.json({
     status: 200,
