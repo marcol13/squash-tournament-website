@@ -32,20 +32,25 @@ router.get("/tournament/:tournamentId", checkUser, async (req, res) => {
     canRegister = false;
   } else {
     //If deadline date let you register
+    const isAlreadyRegistered = await Participation.findOne({
+      where: {
+        tournament_id: req.params.tournamentId,
+        user_id: req.user.id,
+      },
+    });
+
+    console.log(req.user.id)
+
+    //If you are organizer
+    if (isAlreadyRegistered?.is_organizer) {
+      isOrganizer = true;
+    }
+
     if (new Date(isExistingTournament.deadline_date) > new Date()) {
-      const isAlreadyRegistered = await Participation.findOne({
-        where: {
-          tournament_id: req.params.tournamentId,
-          user_id: req.user.id,
-        },
-      });
       //If you are already registered
       if (isAlreadyRegistered) {
         canRegister = false;
-        //If you are organizer
-        if (isAlreadyRegistered.is_organizer) {
-          isOrganizer = true;
-        }
+
         //If there are no spots in tournament
       } else if (countParticipation >= isExistingTournament.max_participants) {
         canRegister = false;
@@ -81,12 +86,14 @@ router.get("/tournament/:tournamentId", checkUser, async (req, res) => {
     const userTemp = await User.findOne({ where: { id: userTempId.user_id } });
     organizer = `${userTemp.name} ${userTemp.surname}`;
   }
-  
-  const sponsors = await Sponsor.findAll({where: {tournament_id: req.params.tournamentId}})
 
-  const sponsorLogos = sponsors.map((el) => el.image.toString())
+  const sponsors = await Sponsor.findAll({
+    where: { tournament_id: req.params.tournamentId },
+  });
 
-  console.log(sponsorLogos.length)
+  const sponsorLogos = sponsors.map((el) => el.image.toString());
+
+  console.log(sponsorLogos.length);
 
   const {
     name,
@@ -98,8 +105,11 @@ router.get("/tournament/:tournamentId", checkUser, async (req, res) => {
     place_x,
     place_y,
     place,
-    price
+    price,
+    isLadderGenerate,
   } = isExistingTournament;
+
+  const canBeGenerated = new Date() > new Date(deadline_date);
 
   res.json({
     status: 200,
@@ -117,7 +127,9 @@ router.get("/tournament/:tournamentId", checkUser, async (req, res) => {
     organizer,
     sponsorLogos,
     prize: price,
-    place
+    place,
+    isLadderGenerate,
+    canBeGenerated,
   });
 
   //   await User.update({ is_active: true }, { where: { id: req.params.userId } })

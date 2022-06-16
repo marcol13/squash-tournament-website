@@ -65,6 +65,8 @@ export const TournamentPage = () => {
   const [organizerName, setOrganizerName] = useState("");
   const [sponsorLogos, setSponsorLogos] = useState([]);
   const [place, setPlace] = useState("");
+  const [canBeGenerated, setCanBeGenerated] = useState(false);
+  const [isLadderGenerate, setIsLadderGenerate] = useState(false);
 
   const { tournamentId } = useParams();
 
@@ -97,6 +99,8 @@ export const TournamentPage = () => {
         setOrganizerName(res.data.organizer);
         setSponsorLogos(res.data.sponsorLogos);
         setPlace(res.data.place)
+        setCanBeGenerated(res.data.canBeGenerated)
+        setIsLadderGenerate(res.data.isLadderGenerate)
 
         console.log(res);
         // navigate("/");
@@ -132,7 +136,7 @@ export const TournamentPage = () => {
           </Button>
         </div>
         <div>
-          {isOrganizer && (
+          {isOrganizer && !canBeGenerated && (
             <Button
               onClick={() => {
                 setSelectedOption(3);
@@ -155,7 +159,7 @@ export const TournamentPage = () => {
         </div>
       </div>
       {selectedOption == 1 ? (
-        <Ladder isOrganizer/>
+        <Ladder isOrganizer={isOrganizer} canBeGenerated={canBeGenerated} isLadderGenerate={isLadderGenerate}/>
       ) : selectedOption == 2 ? (
         <Register />
       ) : selectedOption == 3 ? (
