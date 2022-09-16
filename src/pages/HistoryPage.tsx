@@ -10,6 +10,17 @@ const TournamentContainer = tw.div`
     gap-4
 `;
 
+function datePipe(
+  date: Date,
+  options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  }
+) {
+  return new Date(date).toLocaleString("pl-PL", options);
+}
+
 export const HistoryPage = () => {
   const [tournaments, setTournaments] = useState<any[]>([]);
 
@@ -36,15 +47,10 @@ export const HistoryPage = () => {
       <h3 className="text-3xl mb-5 text-custom-white">Historia turniejów</h3>
       <TournamentContainer>
         {tournaments.map((el) => {
-          const date = new Date(el.date).toLocaleString("pl-PL", {
-            year: "numeric",
-            month: "numeric",
-            day: "numeric",
-          });
           return (
             <Card
               title={el.name}
-              date={date}
+              date={datePipe(el.date)}
               registered={el.count}
               maxRegistered={el.max_participants}
               minAge={el.min_age}
