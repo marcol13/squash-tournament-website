@@ -114,6 +114,10 @@ export const Ladder = ({
     <div className="text-custom-white flex flex-col justify-center items-center">
       <h3 className="text-center text-3xl mb-3">Drabinka</h3>
 
+      {isOrganizer && !canBeGenerated && (
+        <p>Drabinka nie może zostać wygenerowana.</p>
+      )}
+
       {isOrganizer && canBeGenerated && !isLadderGenerate && (
         <Button
           className="w-[250px] mt-10"
@@ -125,43 +129,55 @@ export const Ladder = ({
           🪧 Generuj drabinkę
         </Button>
       )}
-      <SingleEliminationBracket
-        matches={matches}
-        matchComponent={Match}
-        svgWrapper={({ children, ...props }) => (
-          <SVGViewer width={500} height={500} {...props}>
-            {children}
-          </SVGViewer>
-        )}
-      />
-      <div className="mt-10 w-1/3 justify-center items-center">
-        {matches.map(
-          (el, index) =>
-            (el.participants[0].id != "" || el.participants[1].id != "") && (
-              <div className="flex flex-col justify-center align-center">
-                <div key={index} className="grid grid-cols-2  w-full">
-                  <div className="flex flex-col justify-center items-center mb-5">
-                    <span>
-                      {el.participants[0].name != " "
-                        ? el.participants[0].name
-                        : "Pusty zawodnik"}
-                    </span>
-                    <Input type="number" min={0} className="w-[50px]" />
+
+      {isLadderGenerate && (
+        <>
+          <SingleEliminationBracket
+            matches={matches}
+            matchComponent={Match}
+            svgWrapper={({ children, ...props }) => (
+              <SVGViewer width={500} height={500} {...props}>
+                {children}
+              </SVGViewer>
+            )}
+          />
+
+          <div className="mt-10 w-1/3 justify-center items-center">
+            {matches.map(
+              (el, index) =>
+                (el.participants[0].id != "" ||
+                  el.participants[1].id != "") && (
+                  <div className="flex flex-col justify-center align-center">
+                    <div key={index} className="grid grid-cols-2  w-full">
+                      <div className="flex flex-col justify-center items-center mb-5">
+                        <span>
+                          {el.participants[0].name != " "
+                            ? el.participants[0].name
+                            : "Pusty zawodnik"}
+                        </span>
+                        <Input type="number" min={0} className="w-[50px]" />
+                      </div>
+                      <div className="flex flex-col justify-center items-center mb-5">
+                        <span>
+                          {el.participants[1].name != " "
+                            ? el.participants[1].name
+                            : "Pusty zawodnik"}
+                        </span>
+                        <Input type="number" min={0} className="w-[50px]" />
+                      </div>
+                    </div>
+                    <Button
+                      className="mb-10 w-[250px] self-center"
+                      onClick={() => {}}
+                    >
+                      Zatwierdź
+                    </Button>
                   </div>
-                  <div className="flex flex-col justify-center items-center mb-5">
-                    <span>
-                      {el.participants[1].name != " "
-                        ? el.participants[1].name
-                        : "Pusty zawodnik"}
-                    </span>
-                    <Input type="number" min={0} className="w-[50px]" />
-                  </div>
-                </div>
-                <Button className="mb-10 w-[250px] self-center" onClick={() => {}}>Zatwierdź</Button>
-              </div>
-            )
-        )}
-      </div>
+                )
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };
