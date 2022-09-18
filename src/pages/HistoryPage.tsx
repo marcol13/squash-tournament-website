@@ -2,24 +2,13 @@ import tw from "tailwind-styled-components";
 import { Card } from "../components/Card";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Button } from "../components/Button";
+import { dateToString } from "../functions/dateToString";
 
 const TournamentContainer = tw.div`
     grid
     grid-cols-5
     gap-4
 `;
-
-function datePipe(
-  date: Date,
-  options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-  }
-) {
-  return new Date(date).toLocaleString("pl-PL", options);
-}
 
 export const HistoryPage = () => {
   const [tournaments, setTournaments] = useState<any[]>([]);
@@ -50,7 +39,7 @@ export const HistoryPage = () => {
           return (
             <Card
               title={el.name}
-              date={datePipe(el.date)}
+              date={dateToString(el.date)}
               registered={el.count}
               maxRegistered={el.max_participants}
               minAge={el.min_age}
