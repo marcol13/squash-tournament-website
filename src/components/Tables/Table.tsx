@@ -18,8 +18,8 @@ const InfoTableStyle = tw.table`
 export const Table = ({ info, className }: Props) => {
   return (
     <InfoTableStyle className={className}>
-      {info.map((el) => (
-        <TableItem header={el.header} content={el.content} />
+      {info.map((el, index) => (
+        <TableItem header={el.header} content={el.content} key={index} />
       ))}
     </InfoTableStyle>
   );

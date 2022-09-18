@@ -14,9 +14,11 @@ const TabItemStyle = tw.tr`
 
 export const TableItem = ({ header, content, className }: Props) => {
   return (
-    <TabItemStyle className={className}>
-      <th>{header}</th>
-      <td>{content}</td>
-    </TabItemStyle>
+    <tbody>
+      <TabItemStyle className={className}>
+        <th>{header}</th>
+        <td>{content}</td>
+      </TabItemStyle>
+    </tbody>
   );
 };
