@@ -11,6 +11,7 @@ import tw from "tailwind-styled-components";
 import { LatLngTuple } from "leaflet";
 import { Table } from "../../components/Tables/Table";
 import { dateToString } from "./../../functions/dateToString";
+import { Map } from "../../components/Map";
 
 const LogoImageStyle = tw.img`
     max-h-[100px]
@@ -43,13 +44,6 @@ export const InfoPage = ({
   sponsorLogos,
   place,
 }: InfoPageType) => {
-  function MyComponent() {
-    const map = useMap();
-    map.setView(coords, map.getZoom());
-
-    return null;
-  }
-
   const dateSettings = {
     weekday: "long",
     year: "numeric",
@@ -76,41 +70,23 @@ export const InfoPage = ({
     },
     {
       header: "Miejsce zawodów:",
-      content: place
+      content: place,
     },
     {
       header: "Deadline zapisów:",
-      content: dateToString(deadlineDate, dateSettings)
+      content: dateToString(deadlineDate, dateSettings),
     },
     {
       header: "Nagroda",
-      content: `${prize ? prize : 0}zł`
-    }
+      content: `${prize ? prize : 0}zł`,
+    },
   ];
 
   return (
     <div>
       <div className="flex mb-10 items-end">
-        <Table info={info} className="h-[400px]"/>
-        <div className="h-[400px] w-2/5">
-          <MapContainer
-            center={coords}
-            zoom={17}
-            scrollWheelZoom={false}
-            className="h-full w-full"
-          >
-            <MyComponent />
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            />
-            <Marker position={coords}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-          </MapContainer>
-        </div>
+        <Table info={info} className="h-[400px]" />
+        <Map coords={coords} className="h-[400px]" />
       </div>
       <div>
         {sponsorLogos.length > 0 && (
