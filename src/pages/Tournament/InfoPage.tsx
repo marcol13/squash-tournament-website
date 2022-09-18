@@ -9,15 +9,8 @@ import {
 import "leaflet/dist/leaflet.css";
 import tw from "tailwind-styled-components";
 import { LatLngTuple } from "leaflet";
-
-const InfoTableStyle = tw.table`
-    table-auto
-    text-left
-    text-xl
-    w-3/5
-    mr-7
-    text-slate-300
-`;
+import { Table } from "../../components/Tables/Table";
+import { dateToString } from "./../../functions/dateToString";
 
 const LogoImageStyle = tw.img`
     max-h-[100px]
@@ -57,57 +50,48 @@ export const InfoPage = ({
     return null;
   }
 
+  const dateSettings = {
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  } as Intl.DateTimeFormatOptions;
+
+  const info = [
+    {
+      header: "Przedział wiekowy:",
+      content: `${minAge}-${maxAge}`,
+    },
+    {
+      header: "Organizator:",
+      content: organizer,
+    },
+    {
+      header: "Ilość uczestników:",
+      content: `${countParticipations}/${maxParticipants}`,
+    },
+    {
+      header: "Data zawodów:",
+      content: dateToString(date, dateSettings),
+    },
+    {
+      header: "Miejsce zawodów:",
+      content: place
+    },
+    {
+      header: "Deadline zapisów:",
+      content: dateToString(deadlineDate, dateSettings)
+    },
+    {
+      header: "Nagroda",
+      content: `${prize ? prize : 0}zł`
+    }
+  ];
+
   return (
     <div>
       <div className="flex mb-10 items-end">
-        <InfoTableStyle>
-          <tr className="border-b-2 border-solid border-custom-dark-gray">
-            <th>Przedział wiekowy:</th>
-            <td>
-              {minAge}-{maxAge}
-            </td>
-          </tr>
-          <tr className="border-b-2 border-solid border-custom-dark-gray">
-            <th className="pt-6 pb-1">Organizator:</th>
-            <td className="pt-6 pb-1">{organizer}</td>
-          </tr>
-          <tr className="border-b-2 border-solid border-custom-dark-gray">
-            <th className="pt-6 pb-1">Ilość uczestników:</th>
-            <td className="pt-6 pb-1">
-              {countParticipations}/{maxParticipants}
-            </td>
-          </tr>
-          <tr className="border-b-2 border-solid border-custom-dark-gray">
-            <th className="pt-6 pb-1">Data zawodów:</th>
-            <td className="pt-6 pb-1">
-              {new Date(date).toLocaleString("pl-PL", {
-                weekday: "long",
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </td>
-          </tr>
-          <tr className="border-b-2 border-solid border-custom-dark-gray">
-            <th className="pt-6 pb-1">Miejsce zawodów:</th>
-            <td className="pt-6 pb-1">{place}</td>
-          </tr>
-          <tr className="border-b-2 border-solid border-custom-dark-gray">
-            <th className="pt-6 pb-1">Deadline zapisów:</th>
-            <td className="pt-6 pb-1">
-              {new Date(deadlineDate).toLocaleString("pl-PL", {
-                weekday: "long",
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </td>
-          </tr>
-          <tr className="border-b-2 border-solid border-custom-dark-gray">
-            <th className="pt-6 pb-1">Nagroda:</th>
-            <td className="pt-6 pb-1">{prize ? prize : 0}zł</td>
-          </tr>
-        </InfoTableStyle>
+        <Table info={info} className="h-[400px]"/>
         <div className="h-[400px] w-2/5">
           <MapContainer
             center={coords}
