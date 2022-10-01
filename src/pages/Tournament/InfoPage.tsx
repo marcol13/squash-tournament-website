@@ -10,7 +10,7 @@ import "leaflet/dist/leaflet.css";
 import tw from "tailwind-styled-components";
 import { LatLngTuple } from "leaflet";
 import { Table } from "../../components/Tables/Table";
-import { dateToString } from "./../../functions/dateToString";
+import { dateToString } from "../../services/dateToString";
 import { Map } from "../../components/Map";
 
 const LogoImageStyle = tw.img`

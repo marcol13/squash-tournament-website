@@ -2,7 +2,7 @@ import tw from "tailwind-styled-components";
 import { Card } from "../components/Card";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { dateToString } from "../functions/dateToString";
+import { dateToString } from "../services/dateToString";
 
 const TournamentContainer = tw.div`
     grid
