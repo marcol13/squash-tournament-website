@@ -1,5 +1,6 @@
 import tw from "tailwind-styled-components";
 import { Card } from "../components/Card";
+import { Table } from "../components/Tables/Table";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -13,6 +14,15 @@ const ProfilePageStyle = tw.div`
 
 export const ProfilePage = () => {
   const [tournaments, setTournaments] = useState<any[]>([]);
+
+  const userStats = [
+    { header: "🥇 Wygrane turnieje", content: "1" },
+    { header: "🏆 Ranking", content: "1" },
+    { header: "🎾 Ilość rozegranych meczów", content: "1" },
+    { header: "💯 Średnia ilość punktów na set", content: "1" },
+    { header: "🎉 Wygrane/przegrane mecze", content: "1/1" },
+    { header: "🎊 Wygrane/przegrane sety", content: "1/1" },
+  ];
 
   useEffect(() => {
     const config = {
@@ -40,35 +50,15 @@ export const ProfilePage = () => {
         alt=""
       />
       <div className="my-5 text-3xl">
-        <span>{localStorage.getItem("name")} {localStorage.getItem("surname")}</span>
+        <span>
+          {localStorage.getItem("name")} {localStorage.getItem("surname")}
+        </span>
       </div>
       <h3 className="text-xl mb-5">Statystyki:</h3>
-      <table className="w-[600px] text-center table-fixed text-lg mb-5">
-        <tr>
-          <th>🥇 Wygrane turnieje</th>
-          <td>1</td>
-        </tr>
-        <tr>
-          <th>🏆 Ranking</th>
-          <td>1</td>
-        </tr>
-        <tr>
-          <th>🎾 Ilość rozegranych meczów</th>
-          <td>1</td>
-        </tr>
-        <tr>
-          <th>💯 Średnia ilość punktów na set</th>
-          <td>1</td>
-        </tr>
-        <tr>
-          <th>🎉 Wygrane/przegrane mecze</th>
-          <td>1</td>
-        </tr>
-        <tr>
-          <th>🎊 Wygrane/przegrane sety</th>
-          <td>1</td>
-        </tr>
-      </table>
+      <Table
+        info={userStats}
+        className="w-[600px] text-center table-fixed text-lg mb-5"
+      />
       <h3 className="text-xl mb-5">Nadchodzące turnieje:</h3>
       <div className="grid grid-cols-5 content-center justify-center items-center gap-5">
         {tournaments.map((el) => {
