@@ -1,14 +1,6 @@
-import tw from "tailwind-styled-components";
-import { Card } from "../components/Card";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { dateToString } from "../services/dateToString";
-
-const TournamentContainer = tw.div`
-    grid
-    grid-cols-5
-    gap-4
-`;
+import { CardGrid } from "../components/CardGrid/CardGrid";
 
 export const HistoryPage = () => {
   const [tournaments, setTournaments] = useState<any[]>([]);
@@ -34,24 +26,7 @@ export const HistoryPage = () => {
   return (
     <div className="flex flex-col justify-center items-center">
       <h3 className="text-3xl mb-5 text-custom-white">Historia turniejów</h3>
-      <TournamentContainer>
-        {tournaments.map((el) => {
-          return (
-            <Card
-              title={el.name}
-              date={dateToString(el.date)}
-              registered={el.count}
-              maxRegistered={el.max_participants}
-              minAge={el.min_age}
-              maxAge={el.max_age}
-              price={el.price}
-              key={el.id}
-              image={el.image}
-              link={`/tournament/${el.id}`}
-            />
-          );
-        })}
-      </TournamentContainer>
+      <CardGrid tournaments={tournaments} />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { Card } from "../components/Card";
 import { Table } from "../components/Tables/Table";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { CardGrid } from "../components/CardGrid/CardGrid";
 
 const ProfilePageStyle = tw.div`
     flex
@@ -60,29 +61,7 @@ export const ProfilePage = () => {
         className="w-[600px] text-center table-fixed text-lg mb-5"
       />
       <h3 className="text-xl mb-5">Nadchodzące turnieje:</h3>
-      <div className="grid grid-cols-5 content-center justify-center items-center gap-5">
-        {tournaments.map((el) => {
-          const date = new Date(el.date).toLocaleString("pl-PL", {
-            year: "numeric",
-            month: "numeric",
-            day: "numeric",
-          });
-          return (
-            <Card
-              title={el.name}
-              date={date}
-              registered={el.count}
-              maxRegistered={el.max_participants}
-              minAge={el.min_age}
-              maxAge={el.max_age}
-              price={el.price}
-              key={el.id}
-              image={el.image}
-              link={`/tournament/${el.id}`}
-            />
-          );
-        })}
-      </div>
+      <CardGrid tournaments={tournaments} />
     </ProfilePageStyle>
   );
 };

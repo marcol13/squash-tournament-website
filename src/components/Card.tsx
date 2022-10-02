@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import tw from "tailwind-styled-components";
+import CardType from "./../types/CardType";
 
 const CardStyle = tw.div`
     w-[225px]
@@ -39,18 +40,6 @@ const CellInfoStyle = tw.td`
     overflow-hidden
 `;
 
-type CardType = {
-  title: string;
-  image?: string;
-  date: string;
-  registered: number;
-  maxRegistered: number;
-  minAge: number;
-  maxAge: number;
-  price?: number;
-  link: string;
-};
-
 export const Card = ({
   title,
   image = "/src/assets/img/tournament-card-placeholder.jpg",
@@ -67,7 +56,10 @@ export const Card = ({
     <Link to={link}>
       <CardStyle>
         <h3 className="text-lg font-semibold mb-3 text-center">{title}</h3>
-        <img className="rounded-lg object-contain mb-3 w-full h-[150px]" src={image} />
+        <img
+          className="rounded-lg object-contain mb-3 w-full h-[150px]"
+          src={image}
+        />
         <CenterTableStyle>
           <TableInfoStyle>
             <tr>
